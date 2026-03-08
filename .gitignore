@@ -1,32 +1,18 @@
-# Python
+# Python cache
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
 
-# Virtual Environment
+# Virtual environment
 venv/
 env/
 ENV/
+.venv/
 .venv
 
-# Environment Variables
+# Environment variables
 .env
 .env.local
 .env.*.local
@@ -40,8 +26,12 @@ instance/
 *.sqlite
 *.sqlite3
 
-# PDFs
+# PDFs generated
 pdfs/quotations/*.pdf
+
+# Logs
+*.log
+logs/
 
 # IDE
 .vscode/
@@ -54,15 +44,22 @@ pdfs/quotations/*.pdf
 .DS_Store
 Thumbs.db
 
-# Logs
-*.log
-logs/
-
 # Testing
 .coverage
 htmlcov/
 .pytest_cache/
 .tox/
+
+# Python build files
+build/
+dist/
+*.egg-info/
+.installed.cfg
+*.egg
+wheels/
+
+# Jupyter
+.ipynb_checkpoints
 
 # Render
 render.yaml

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Arihant Agro Services
 
 A professional, fully functional website for Arihant Agro Services - an agriculture-based shop selling drip irrigation, sprinkler systems, HDPE pipes, plumbing materials, machinery, sanitary and bathroom fittings.
@@ -173,3 +174,7 @@ This project is proprietary and confidential.
 For support, contact:
 - Email: arihantagro@gmail.com
 - Phone: 9604373737 / 9860989891
+=======
+# arihant-agro
+Arihant Agro Services - Flask based quotation management system with MongoDB
+>>>>>>> d06776b1b95ee3bee821e82ca910ee5399222e0a
