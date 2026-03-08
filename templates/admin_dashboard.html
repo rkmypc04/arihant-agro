@@ -1,0 +1,357 @@
+{% extends 'base.html' %}
+
+{% block title %}अ‍ॅडमिन डॅशबोर्ड - Arihant Agro Services{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header page-header-small">
+    <div class="page-header-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="page-title">अ‍ॅडमिन डॅशबोर्ड</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url_for('home') }}">मुख्यपृष्ठ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">अ‍ॅडमिन</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Admin Dashboard Section -->
+<section class="admin-dashboard-section py-5">
+    <div class="container">
+        <!-- Welcome Card -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="welcome-card admin-welcome">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h3 class="welcome-title">
+                                <i class="fas fa-user-shield me-2 text-warning"></i>
+                                नमस्कार, प्रशासक!
+                            </h3>
+                            <p class="welcome-text mb-0">
+                                Arihant Agro Services च्या अ‍ॅडमिन पॅनेलमध्ये तुमचे स्वागत आहे.
+                                येथे तुम्ही सर्व कोटेशन, वापरकर्ते आणि आकडेवारी पाहू शकता.
+                            </p>
+                        </div>
+                        <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                            <a href="{{ url_for('home') }}" class="btn btn-light btn-lg">
+                                <i class="fas fa-home me-2"></i>वेबसाइट पहा
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row mb-4">
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="stat-card admin-stat">
+                    <div class="stat-icon bg-primary">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4 class="stat-number">{{ stats.total_users }}</h4>
+                        <p class="stat-label">एकूण वापरकर्ते</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="stat-card admin-stat">
+                    <div class="stat-icon bg-success">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4 class="stat-number">{{ stats.total_quotations }}</h4>
+                        <p class="stat-label">एकूण कोटेशन</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="stat-card admin-stat">
+                    <div class="stat-icon bg-info">
+                        <i class="fas fa-calendar-day"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4 class="stat-number">{{ stats.today_quotations }}</h4>
+                        <p class="stat-label">आजची कोटेशन</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="stat-card admin-stat">
+                    <div class="stat-icon bg-warning">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4 class="stat-number">12</h4>
+                        <p class="stat-label">उत्पादने</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Quotations -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="admin-card">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            <i class="fas fa-file-invoice me-2"></i>अलीकडील कोटेशन
+                        </h4>
+                        <div class="card-actions">
+                            <button class="btn btn-sm btn-outline-primary" onclick="exportToExcel()">
+                                <i class="fas fa-file-excel me-1"></i>Export
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {% if quotations %}
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="quotationsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Quote No</th>
+                                        <th>Date</th>
+                                        <th>Customer</th>
+                                        <th>Brand</th>
+                                        <th>Amount</th>
+                                        <th>Created By</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for quotation in quotations %}
+                                    <tr>
+                                        <td>
+                                            <span class="quotation-number">{{ quotation.quotation_no }}</span>
+                                        </td>
+                                        <td>
+                                            {% if quotation.date %}
+                                            {{ quotation.date.strftime('%d/%m/%Y') }}
+                                            {% else %}
+                                            -
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ quotation.customer.name }}</td>
+                                        <td>{{ quotation.brand }}</td>
+                                        <td>
+                                            <span class="amount">₹{{ "%.2f"|format(quotation.final_amount) }}</span>
+                                        </td>
+                                        <td>
+                                            {% set user = users|selectattr('_id', 'equalto', quotation.user_id)|first %}
+                                            {{ user.name if user else 'Unknown' }}
+                                        </td>
+                                        <td>
+                                            {% if quotation.status == 'saved' %}
+                                            <span class="badge bg-success">Saved</span>
+                                            {% elif quotation.status == 'draft' %}
+                                            <span class="badge bg-warning">Draft</span>
+                                            {% else %}
+                                            <span class="badge bg-secondary">{{ quotation.status }}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <a href="{{ url_for('quotation_preview', quotation_id=quotation._id) }}"
+                                                class="btn btn-sm btn-info" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="{{ url_for('download_quotation', quotation_id=quotation._id) }}"
+                                                class="btn btn-sm btn-success" title="Download">
+                                                <i class="fas fa-download"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% else %}
+                        <div class="empty-state text-center py-5">
+                            <div class="empty-icon">
+                                <i class="fas fa-file-invoice"></i>
+                            </div>
+                            <h5>अद्याप कोटेशन नाही</h5>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users List -->
+        <div class="row">
+            <div class="col-12">
+                <div class="admin-card">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            <i class="fas fa-users me-2"></i>वापरकर्ते
+                        </h4>
+                        <div class="card-actions">
+                            <span class="badge bg-primary">{{ users|length }} Users</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {% if users %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Shop Name</th>
+                                        <th>Mobile</th>
+                                        <th>Email</th>
+                                        <th>Address</th>
+                                        <th>Joined</th>
+                                        <th>Type</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for user in users %}
+                                    <tr>
+                                        <td>
+                                            <strong>{{ user.name }}</strong>
+                                        </td>
+                                        <td>{{ user.shop_name }}</td>
+                                        <td>{{ user.mobile }}</td>
+                                        <td>{{ user.email }}</td>
+                                        <td>{{ user.address[:30] }}{% if user.address|length > 30 %}...{% endif %}</td>
+                                        <td>
+                                            {% if user.created_at %}
+                                            {{ user.created_at.strftime('%d/%m/%Y') }}
+                                            {% else %}
+                                            -
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if user.is_admin %}
+                                            <span class="badge bg-danger">Admin</span>
+                                            {% else %}
+                                            <span class="badge bg-primary">User</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% else %}
+                        <div class="empty-state text-center py-5">
+                            <div class="empty-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h5>अद्याप वापरकर्ते नाहीत</h5>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="quick-actions-card">
+                    <h5 class="quick-actions-title">
+                        <i class="fas fa-bolt me-2"></i>द्रुत क्रिया
+                    </h5>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <a href="{{ url_for('new_quotation') }}" class="quick-action-item">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>नवीन कोटेशन</span>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <a href="{{ url_for('products') }}" class="quick-action-item">
+                                <i class="fas fa-boxes"></i>
+                                <span>उत्पादने</span>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <a href="{{ url_for('contact') }}" class="quick-action-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>संदेश</span>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <a href="{{ url_for('home') }}" class="quick-action-item">
+                                <i class="fas fa-globe"></i>
+                                <span>वेबसाइट</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+
+            <div class="col-md-3">
+                <a href="{{ url_for('admin_brands') }}" class="btn btn-primary w-100">
+                    ➕ ब्रँड जोडा
+                </a>
+            </div>
+
+            <div class="col-md-3">
+                <a href="{{ url_for('admin_products') }}" class="btn btn-success w-100">
+                    ➕ उत्पादन जोडा
+                </a>
+            </div>
+
+            <div class="col-md-3">
+                <a href="{{ url_for('admin_kits') }}" class="btn btn-warning w-100">
+                    ➕ किट तयार करा
+                </a>
+            </div>
+
+            <div class="col-md-3">
+                <a href="{{ url_for('admin_all_quotations') }}" class="btn btn-info w-100">
+                    📄 सर्व कोटेशन पहा
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% block extra_js %}
+<script>
+    // Export to Excel function
+    function exportToExcel() {
+        const table = document.getElementById('quotationsTable');
+        let csv = [];
+
+        // Get headers
+        const headers = [];
+        table.querySelectorAll('thead th').forEach(th => {
+            headers.push('"' + th.textContent.trim() + '"');
+        });
+        csv.push(headers.join(','));
+
+        // Get rows
+        table.querySelectorAll('tbody tr').forEach(tr => {
+            const row = [];
+            tr.querySelectorAll('td').forEach(td => {
+                row.push('"' + td.textContent.trim() + '"');
+            });
+            csv.push(row.join(','));
+        });
+
+        // Download
+        const csvContent = '\uFEFF' + csv.join('\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'quotations_' + new Date().toISOString().split('T')[0] + '.csv';
+        link.click();
+    }
+</script>
+{% endblock %}
+{% endblock %}

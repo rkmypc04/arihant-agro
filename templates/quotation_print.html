@@ -1,0 +1,846 @@
+{% extends 'base.html' %}
+
+{% block title %}नवीन कोटेशन - Arihant Agro Services{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header page-header-small">
+    <div class="page-header-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="page-title">नवीन कोटेशन</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url_for('home') }}">मुख्यपृष्ठ</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url_for('dashboard') }}">डॅशबोर्ड</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">नवीन कोटेशन</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quotation Form Section -->
+<section class="quotation-form-section py-5">
+    <div class="container">
+        <form method="POST" action="{{ url_for('new_quotation') }}" id="quotationForm">
+            <!-- Company Info Card -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="company-info-card">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4 class="company-name">{{ company.name }}</h4>
+                                <p class="company-detail">
+                                    <i class="fas fa-map-marker-alt me-2"></i>{{ company.address }}
+                                </p>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <p class="company-detail">
+                                    <i class="fas fa-phone me-2"></i>{{ company.mobile }}
+                                </p>
+                                <p class="company-detail">
+                                    <i class="fas fa-id-card me-2"></i>GSTIN: {{ company.gstin }}
+                                </p>
+                                <p class="company-detail">
+                                    <i class="fas fa-envelope me-2"></i>{{ company.email }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Details -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="form-section-card">
+                        <h5 class="section-title">
+                            <i class="fas fa-user me-2"></i>ग्राहक तपशील
+                        </h5>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">ग्राहकाचे नाव *</label>
+                                <input type="text" class="form-control" name="customer_name" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">मोबाईल नंबर *</label>
+                                <input type="tel" class="form-control" name="customer_mobile" pattern="[0-9]{10}" maxlength="10" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">आधार क्रमांक</label>
+                                <input type="text" class="form-control" name="aadhar" pattern="[0-9]{12}" maxlength="12">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">गाव *</label>
+                                <input type="text" class="form-control" name="gaon" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">शिवार *</label>
+                                <input type="text" class="form-control" name="shivar" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">गट नंबर *</label>
+                                <input type="text" class="form-control" name="gat_no" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">क्षेत्रफळ (एकरी) *</label>
+                                <input type="text" class="form-control" name="shetra" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">तालुका *</label>
+                                <input type="text" class="form-control" name="taluka" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">जिल्हा *</label>
+                                <input type="text" class="form-control" name="jilha" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">शेतकरी ID</label>
+                                <input type="text" class="form-control" name="shetkari_id">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brand and Kit Selection -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="form-section-card">
+                        <h5 class="section-title">
+                            <i class="fas fa-certificate me-2"></i>ब्रँड आणि किट निवड
+                        </h5>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">ब्रँड (Company) *</label>
+                                <select class="form-select" name="brand" id="brandSelect" required>
+                                    <option value="">ब्रँड निवडा</option>
+                                    {% for brand in brands %}
+                                    <option value="{{ brand._id if brand._id else brand }}">
+                                        {{ brand.name if brand.name else brand }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">संच (पर्यायी)</label>
+                                <select class="form-select" id="kitSelect" name="kit">
+                                    <option value="">संच निवडा</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-info btn-sm" id="loadKitBtn" onclick="loadKit()">
+                                    <i class="fas fa-download me-1"></i>संच लोड करा
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Items Section -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="form-section-card">
+                        <h5 class="section-title">
+                            <i class="fas fa-shopping-cart me-2"></i>उत्पादने
+                        </h5>
+                        <div class="items-container" id="itemsContainer">
+                            <!-- Initial Item Row -->
+                            <div class="item-row" data-row="0">
+                                <div class="row align-items-end">
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">उत्पादन *</label>
+                                        <select class="form-select product-select" name="product_id[]" required>
+                                            <option value="">उत्पादन निवडा</option>
+                                            {% for product in products %}
+                                            <option value="{{ product._id }}" 
+                                                    data-rate="{{ product.rate }}" 
+                                                    data-cml="{{ product.cml_no }}" 
+                                                    data-unit="{{ product.unit }}">
+                                                {{ product.name }}
+                                            </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label class="form-label">CML नं.</label>
+                                        <input type="text" class="form-control cml-input" name="cml_no[]" readonly>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label class="form-label">साईझ</label>
+                                        <input type="text" class="form-control" name="size[]" placeholder="उदा. 63mm">
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label class="form-label">प्रमाण *</label>
+                                        <input type="number" class="form-control quantity-input" name="quantity[]" min="1" value="1" required>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label class="form-label">दर (₹)</label>
+                                        {% if session.get('is_admin') %}
+                                        <input type="number" step="0.01" name="rate[]" class="form-control rate-input" value="0">
+                                        {% else %}
+                                        <input type="text" class="form-control rate-input" readonly>
+                                        <input type="hidden" name="rate[]" class="hidden-rate">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">एकक</label>
+                                        <input type="text" class="form-control unit-input" readonly>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">एकूण (₹)</label>
+                                        <input type="text" class="form-control amount-input" readonly>
+                                    </div>
+                                    <div class="col-md-4 mb-3 d-flex align-items-end">
+                                        <button type="button" class="btn btn-danger btn-sm remove-item" onclick="removeItemRow(this)" style="display: none;">
+                                            <i class="fas fa-trash"></i> काढून टाका
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-outline-primary" id="addItemBtn">
+                            <i class="fas fa-plus me-2"></i>आणखी उत्पादन जोडा
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Discount Section -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="form-section-card">
+                        <h5 class="section-title">
+                            <i class="fas fa-percent me-2"></i>सूट
+                        </h5>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label">सूट (%)</label>
+                                <input type="number" class="form-control" name="discount" id="discountInput" min="0" max="100" value="0" step="0.01">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculation Summary -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="calculation-card">
+                        <h5 class="section-title">
+                            <i class="fas fa-calculator me-2"></i>गणना
+                        </h5>
+                        <div class="calculation-table">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td>एकूण रक्कम:</td>
+                                    <td class="text-end"><strong id="subTotal">₹0.00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>सूट (<span id="discountPercent">0</span>%):</td>
+                                    <td class="text-end"><strong id="discountAmount">₹0.00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>करयोग्य रक्कम:</td>
+                                    <td class="text-end"><strong id="taxableAmount">₹0.00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>CGST (2.5%):</td>
+                                    <td class="text-end"><strong id="cgstAmount">₹0.00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>SGST (2.5%):</td>
+                                    <td class="text-end"><strong id="sgstAmount">₹0.00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>एकूण GST:</td>
+                                    <td class="text-end"><strong id="totalGst">₹0.00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Round Off:</td>
+                                    <td class="text-end"><strong id="roundOff">₹0.00</strong></td>
+                                </tr>
+                                <tr class="grand-total-row">
+                                    <td>
+                                        <h5>एकूण रक्कम:</h5>
+                                    </td>
+                                    <td class="text-end">
+                                        <h5 id="finalAmount">₹0.00</h5>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="text-center">
+                                        <em id="amountInWords">शून्य रुपये फक्त</em>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Buttons -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="submit-section">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-2"></i>कोटेशन तयार करा
+                        </button>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary ms-2">
+                            <i class="fas fa-times me-2"></i>रद्द करा
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Store products data for quick access
+const productsData = {
+    {% for product in products %}
+    "{{ product._id }}": {
+        name: "{{ product.name }}",
+        cml_no: "{{ product.cml_no }}",
+        rate: {{ product.rate }},
+        unit: "{{ product.unit }}"
+    },
+    {% endfor %}
+};
+
+// Initialize on document ready
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listeners
+    document.getElementById('addItemBtn').addEventListener('click', addNewItemRow);
+    document.getElementById('brandSelect').addEventListener('change', loadKits);
+    document.getElementById('discountInput').addEventListener('input', calculateTotals);
+    
+    // Add event listeners to initial row
+    addRowEventListeners(document.querySelector('.item-row'));
+    
+    // Initial calculation
+    calculateTotals();
+});
+
+// Function to add event listeners to a row
+function addRowEventListeners(row) {
+    const productSelect = row.querySelector('.product-select');
+    const quantityInput = row.querySelector('.quantity-input');
+    const rateInput = row.querySelector('.rate-input');
+    
+    if (productSelect) {
+        productSelect.addEventListener('change', function() {
+            updateProductInfo(row);
+            calculateTotals();
+        });
+    }
+    
+    if (quantityInput) {
+        quantityInput.addEventListener('input', function() {
+            calculateRowAmount(row);
+            calculateTotals();
+        });
+    }
+    
+    if (rateInput && !rateInput.readOnly) {
+        rateInput.addEventListener('input', function() {
+            calculateRowAmount(row);
+            calculateTotals();
+        });
+    }
+}
+
+// Function to add new item row
+function addNewItemRow() {
+    const container = document.getElementById('itemsContainer');
+    const rows = container.querySelectorAll('.item-row');
+    const newRow = rows[0].cloneNode(true);
+    const rowCount = rows.length;
+    
+    // Clear input values
+    newRow.querySelectorAll('input').forEach(input => {
+        if (input.type !== 'button' && input.name !== 'cml_no[]') {
+            input.value = '';
+        }
+        if (input.name === 'quantity[]') {
+            input.value = '1';
+        }
+    });
+    
+    newRow.querySelectorAll('select').forEach(select => {
+        select.value = '';
+    });
+    
+    // Show remove button for new row
+    const removeBtn = newRow.querySelector('.remove-item');
+    if (removeBtn) {
+        removeBtn.style.display = 'inline-block';
+    }
+    
+    // Update row attribute
+    newRow.setAttribute('data-row', rowCount);
+    
+    // Add to container
+    container.appendChild(newRow);
+    
+    // Add event listeners
+    addRowEventListeners(newRow);
+    
+    // Update remove buttons visibility
+    updateRemoveButtons();
+}
+
+// Function to remove item row
+function removeItemRow(button) {
+    const row = button.closest('.item-row');
+    const container = document.getElementById('itemsContainer');
+    
+    // Don't remove if it's the only row
+    if (container.querySelectorAll('.item-row').length > 1) {
+        row.remove();
+        calculateTotals();
+    } else {
+        alert('किमान एक उत्पादन आवश्यक आहे');
+    }
+    
+    updateRemoveButtons();
+}
+
+// Function to update remove buttons visibility
+function updateRemoveButtons() {
+    const container = document.getElementById('itemsContainer');
+    const rows = container.querySelectorAll('.item-row');
+    const removeButtons = container.querySelectorAll('.remove-item');
+    
+    removeButtons.forEach(btn => {
+        btn.style.display = rows.length > 1 ? 'inline-block' : 'none';
+    });
+}
+
+// Function to update product info in a row
+function updateProductInfo(row) {
+    const select = row.querySelector('.product-select');
+    const selectedOption = select.options[select.selectedIndex];
+    
+    if (selectedOption && selectedOption.value) {
+        const cmlInput = row.querySelector('.cml-input');
+        const rateInput = row.querySelector('.rate-input');
+        const hiddenRate = row.querySelector('.hidden-rate');
+        const unitInput = row.querySelector('.unit-input');
+        
+        const rate = selectedOption.dataset.rate;
+        const cml = selectedOption.dataset.cml;
+        const unit = selectedOption.dataset.unit;
+        
+        cmlInput.value = cml || '';
+        
+        {% if session.get('is_admin') %}
+        if (rateInput) rateInput.value = rate;
+        {% else %}
+        if (rateInput) rateInput.value = '₹' + parseFloat(rate).toFixed(2);
+        if (hiddenRate) hiddenRate.value = rate;
+        {% endif %}
+        
+        if (unitInput) unitInput.value = unit || '';
+        
+        calculateRowAmount(row);
+    }
+}
+
+// Function to calculate amount for a single row
+function calculateRowAmount(row) {
+    const quantity = parseFloat(row.querySelector('.quantity-input').value) || 0;
+    let rate = 0;
+    
+    {% if session.get('is_admin') %}
+    rate = parseFloat(row.querySelector('.rate-input').value) || 0;
+    {% else %}
+    const hiddenRate = row.querySelector('.hidden-rate');
+    if (hiddenRate) {
+        rate = parseFloat(hiddenRate.value) || 0;
+    }
+    {% endif %}
+    
+    const amount = quantity * rate;
+    const amountInput = row.querySelector('.amount-input');
+    if (amountInput) {
+        amountInput.value = '₹' + amount.toFixed(2);
+    }
+}
+
+// Function to load kits based on brand selection
+function loadKits() {
+    const brandId = document.getElementById('brandSelect').value;
+    const kitSelect = document.getElementById('kitSelect');
+    
+    if (!brandId) {
+        kitSelect.innerHTML = '<option value="">संच निवडा</option>';
+        return;
+    }
+    
+    fetch(`/api/get-kits-by-brand/${brandId}`)
+        .then(response => response.json())
+        .then(kits => {
+            kitSelect.innerHTML = '<option value="">संच निवडा</option>';
+            kits.forEach(kit => {
+                kitSelect.innerHTML += `<option value="${kit._id}">${kit.name} (${kit.size})</option>`;
+            });
+        })
+        .catch(error => {
+            console.error('Error loading kits:', error);
+        });
+}
+
+// Function to load selected kit
+function loadKit() {
+    const kitId = document.getElementById('kitSelect').value;
+    if (!kitId) {
+        alert('कृपया संच निवडा');
+        return;
+    }
+    
+    if (!confirm('नवीन संच लोड केल्यास विद्यमान उत्पादने काढून टाकली जातील. सुरू ठेवायचे?')) {
+        return;
+    }
+    
+    fetch(`/api/get-kit/${kitId}`)
+        .then(response => response.json())
+        .then(kit => {
+            // Clear existing items
+            const container = document.getElementById('itemsContainer');
+            container.innerHTML = '';
+            
+            // Add items from kit
+            kit.items.forEach((item, index) => {
+                addNewItemRow();
+                const rows = container.querySelectorAll('.item-row');
+                const lastRow = rows[rows.length - 1];
+                
+                const productSelect = lastRow.querySelector('.product-select');
+                productSelect.value = item.product_id;
+                
+                // Update product info
+                updateProductInfo(lastRow);
+                
+                // Set quantity
+                const quantityInput = lastRow.querySelector('.quantity-input');
+                quantityInput.value = item.quantity;
+                
+                // Set rate if admin
+                {% if session.get('is_admin') %}
+                const rateInput = lastRow.querySelector('.rate-input');
+                rateInput.value = item.rate;
+                {% endif %}
+                
+                calculateRowAmount(lastRow);
+            });
+            
+            calculateTotals();
+        })
+        .catch(error => {
+            console.error('Error loading kit:', error);
+            alert('संच लोड करताना त्रुटी');
+        });
+}
+
+// Main calculation function
+function calculateTotals() {
+    let subTotal = 0;
+    const rows = document.querySelectorAll('.item-row');
+    
+    rows.forEach(row => {
+        const quantity = parseFloat(row.querySelector('.quantity-input').value) || 0;
+        let rate = 0;
+        
+        {% if session.get('is_admin') %}
+        rate = parseFloat(row.querySelector('.rate-input').value) || 0;
+        {% else %}
+        const hiddenRate = row.querySelector('.hidden-rate');
+        if (hiddenRate) {
+            rate = parseFloat(hiddenRate.value) || 0;
+        }
+        {% endif %}
+        
+        subTotal += quantity * rate;
+    });
+    
+    const discountPercent = parseFloat(document.getElementById('discountInput').value) || 0;
+    const discountAmount = (subTotal * discountPercent) / 100;
+    const taxableAmount = subTotal - discountAmount;
+    const cgst = taxableAmount * 0.025;
+    const sgst = taxableAmount * 0.025;
+    const totalGst = cgst + sgst;
+    const grandTotal = taxableAmount + totalGst;
+    const roundOff = Math.round(grandTotal) - grandTotal;
+    const finalAmount = Math.round(grandTotal);
+    
+    // Update display
+    document.getElementById('subTotal').textContent = '₹' + subTotal.toFixed(2);
+    document.getElementById('discountPercent').textContent = discountPercent.toFixed(2);
+    document.getElementById('discountAmount').textContent = '₹' + discountAmount.toFixed(2);
+    document.getElementById('taxableAmount').textContent = '₹' + taxableAmount.toFixed(2);
+    document.getElementById('cgstAmount').textContent = '₹' + cgst.toFixed(2);
+    document.getElementById('sgstAmount').textContent = '₹' + sgst.toFixed(2);
+    document.getElementById('totalGst').textContent = '₹' + totalGst.toFixed(2);
+    document.getElementById('roundOff').textContent = '₹' + roundOff.toFixed(2);
+    document.getElementById('finalAmount').textContent = '₹' + finalAmount.toFixed(2);
+    
+    // Get amount in words from API
+    if (subTotal > 0) {
+        fetch('/api/calculate-quotation', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                items: getItemsData(),
+                discount: discountPercent
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.amount_in_words_marathi) {
+                document.getElementById('amountInWords').textContent = data.amount_in_words_marathi;
+            }
+        })
+        .catch(error => {
+            console.error('Error getting amount in words:', error);
+        });
+    }
+}
+
+// Helper function to get items data
+function getItemsData() {
+    const items = [];
+    const rows = document.querySelectorAll('.item-row');
+    
+    rows.forEach(row => {
+        const productSelect = row.querySelector('.product-select');
+        const quantity = row.querySelector('.quantity-input').value;
+        
+        if (productSelect.value && quantity) {
+            items.push({
+                product_id: productSelect.value,
+                quantity: quantity
+            });
+        }
+    });
+    
+    return items;
+}
+
+// Form validation before submit
+document.getElementById('quotationForm').addEventListener('submit', function(e) {
+    const rows = document.querySelectorAll('.item-row');
+    let valid = true;
+    
+    // Check if at least one product is selected
+    let hasProduct = false;
+    rows.forEach(row => {
+        const productSelect = row.querySelector('.product-select');
+        if (productSelect.value) {
+            hasProduct = true;
+        }
+    });
+    
+    if (!hasProduct) {
+        alert('कृपया किमान एक उत्पादन निवडा');
+        e.preventDefault();
+        valid = false;
+    }
+    
+    // Check customer fields
+    const requiredFields = ['customer_name', 'customer_mobile', 'gaon', 'shivar', 'gat_no', 'shetra', 'taluka', 'jilha'];
+    requiredFields.forEach(field => {
+        const input = document.querySelector(`[name="${field}"]`);
+        if (input && !input.value) {
+            alert(`कृपया ${input.previousElementSibling.textContent} भरा`);
+            e.preventDefault();
+            valid = false;
+        }
+    });
+    
+    return valid;
+});
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Overall spacing */
+.mb-4 {
+    margin-bottom: 15px !important;
+}
+
+.company-info-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.company-info-card h4 {
+    font-size: 18px;
+    margin-bottom: 3px;
+}
+
+.company-info-card p {
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+.form-section-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-section-card .row {
+    margin-bottom: 4px;
+}
+
+.form-section-card label {
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+.form-section-card input,
+.form-section-card select {
+    font-size: 11px;
+    padding: 3px 5px;
+}
+
+.section-title {
+    color: #333;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 5px;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.calculation-card {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.calculation-table table {
+    font-size: 13px;
+}
+
+.calculation-table td {
+    padding: 2px 4px !important;
+    font-size: 12px;
+}
+
+.grand-total-row {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.item-row {
+    background: #f8f9fa;
+    padding: 4px !important;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+.item-row .row {
+    margin-bottom: 3px;
+}
+
+.item-row label {
+    font-size: 12px;
+}
+
+.item-row input,
+.item-row select {
+    font-size: 12px;
+    padding: 4px;
+}
+
+.item-row:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.remove-item {
+    background: #dc3545;
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.remove-item:hover {
+    background: #c82333;
+    transform: scale(1.05);
+}
+
+#addItemBtn {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.submit-section {
+    text-align: center;
+    padding: 15px 0;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    padding: 8px 20px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+}
+
+.btn-outline-secondary {
+    padding: 8px 20px;
+    font-size: 14px;
+}
+
+.breadcrumb {
+    background: transparent;
+}
+
+.breadcrumb-item a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.breadcrumb-item.active {
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .company-info-card .text-md-end {
+        text-align: left !important;
+        margin-top: 10px;
+    }
+}
+</style>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}ब्रँड व्यवस्थापन{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h3 class="mb-4">ब्रँड जोडा</h3>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <div class="mb-3">
+            <label class="form-label">Brand Name</label>
+            <input type="text" name="name" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Company Name</label>
+            <input type="text" name="company_name" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Company Details</label>
+            <textarea name="company_details" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Company Products</label>
+            <input type="text" name="products" class="form-control"
+                placeholder="उदा. Jain Drip, Jain Sprinkler, Jain Pipes">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Brand Logo</label>
+            <input type="file" name="logo" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Brand Add
+        </button>
+
+    </form>
+    </form>
+
+    <hr class="my-4">
+
+    <h4 class="mb-3">सर्व ब्रँड</h4>
+
+    {% if brands %}
+    <div class="list-group">
+        {% for brand in brands %}
+        <div class="list-group-item d-flex justify-content-between align-items-center">
+            <span>
+                <i class="fas fa-certificate text-primary me-2"></i>
+                {{ brand.name }}
+            </span>
+            <a href="{{ url_for('delete_brand', brand_id=brand._id) }}" class="btn btn-danger btn-sm"
+                onclick="return confirm('हा ब्रँड delete करायचा आहे का?')">
+                <i class="fas fa-trash me-1"></i>Delete
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        <i class="fas fa-info-circle me-2"></i>
+        अद्याप कोणताही ब्रँड नाही
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

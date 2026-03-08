@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}सर्व कोटेशन{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h3>सर्व कोटेशन</h3>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Customer</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for q in quotations %}
+            <tr>
+                <td>{{ q.quotation_no }}</td>
+                <td>{{ q.customer.name }}</td>
+                <td>₹{{ q.final_amount }}</td>
+                <td>{{ q.date.strftime('%d/%m/%Y') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

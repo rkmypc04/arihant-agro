@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+
+{% block title %}नोंदणी - Arihant Agro Services{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header page-header-small">
+    <div class="page-header-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="page-title">नोंदणी</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url_for('home') }}">मुख्यपृष्ठ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">नोंदणी</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Register Section -->
+<section class="auth-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="auth-card">
+                    <div class="auth-header text-center">
+                        <div class="auth-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h3 class="auth-title">नवीन खाते तयार करा</h3>
+                        <p class="auth-subtitle">कोटेशन तयार करण्यासाठी नोंदणी करा</p>
+                    </div>
+                    
+                    <form method="POST" action="{{ url_for('register') }}" class="auth-form" id="registerForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">
+                                    <i class="fas fa-user me-2"></i>पूर्ण नाव *
+                                </label>
+                                <input type="text" 
+                                       class="form-control" 
+                                       id="name" 
+                                       name="name" 
+                                       placeholder="तुमचे नाव"
+                                       required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="shop_name" class="form-label">
+                                    <i class="fas fa-store me-2"></i>दुकानाचे नाव *
+                                </label>
+                                <input type="text" 
+                                       class="form-control" 
+                                       id="shop_name" 
+                                       name="shop_name" 
+                                       placeholder="दुकानाचे नाव"
+                                       required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="mobile" class="form-label">
+                                    <i class="fas fa-phone me-2"></i>मोबाईल नंबर *
+                                </label>
+                                <input type="tel" 
+                                       class="form-control" 
+                                       id="mobile" 
+                                       name="mobile" 
+                                       placeholder="10 अंकी मोबाईल"
+                                       pattern="[0-9]{10}"
+                                       maxlength="10"
+                                       required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">
+                                    <i class="fas fa-envelope me-2"></i>ईमेल *
+                                </label>
+                                <input type="email" 
+                                       class="form-control" 
+                                       id="email" 
+                                       name="email" 
+                                       placeholder="तुमचा ईमेल"
+                                       required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="address" class="form-label">
+                                <i class="fas fa-map-marker-alt me-2"></i>पत्ता *
+                            </label>
+                            <textarea class="form-control" 
+                                      id="address" 
+                                      name="address" 
+                                      rows="2" 
+                                      placeholder="तुमचा पूर्ण पत्ता"
+                                      required></textarea>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="password" class="form-label">
+                                    <i class="fas fa-lock me-2"></i>पासवर्ड *
+                                </label>
+                                <div class="input-group">
+                                    <input type="password" 
+                                           class="form-control" 
+                                           id="password" 
+                                           name="password" 
+                                           placeholder="किमान 6 अक्षरे"
+                                           minlength="6"
+                                           required>
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="confirm_password" class="form-label">
+                                    <i class="fas fa-lock me-2"></i>पासवर्ड पुष्टी *
+                                </label>
+                                <input type="password" 
+                                       class="form-control" 
+                                       id="confirm_password" 
+                                       name="confirm_password" 
+                                       placeholder="पासवर्ड पुष्टी"
+                                       required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
+                            <label class="form-check-label" for="terms">
+                                मी <a href="{{ url_for('privacy') }}" target="_blank">गोपनीयता धोरण</a> 
+                                आणि <a href="#">नियम आणि अटी</a> स्वीकारतो *
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="fas fa-user-plus me-2"></i>नोंदणी करा
+                        </button>
+                    </form>
+                    
+                    <div class="auth-divider">
+                        <span>किंवा</span>
+                    </div>
+                    
+                    <div class="auth-footer text-center">
+                        <p class="mb-0">
+                            आधीच खाते आहे? 
+                            <a href="{{ url_for('login') }}" class="auth-link">लॉगिन करा</a>
+                        </p>
+                    </div>
+                    
+                    <div class="auth-help mt-4">
+                        <div class="alert alert-info">
+                            <h6><i class="fas fa-info-circle me-2"></i>माहिती</h6>
+                            <ul class="mb-0 small">
+                                <li>नोंदणी नंतर तुम्ही कोटेशन तयार करू शकता</li>
+                                <li>तुमची माहिती पूर्णपणे सुरक्षित आहे</li>
+                                <li>समस्या असल्यास <a href="tel:9604373737">9604373737</a> वर कॉल करा</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block extra_js %}
+<script>
+    // Toggle password visibility
+    document.getElementById('togglePassword').addEventListener('click', function() {
+        const passwordInput = document.getElementById('password');
+        const icon = this.querySelector('i');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+    
+    // Form validation
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm_password').value;
+        
+        if (password !== confirmPassword) {
+            e.preventDefault();
+            alert('पासवर्ड आणि पुष्टी पासवर्ड जुळत नाहीत!');
+            return false;
+        }
+        
+        if (password.length < 6) {
+            e.preventDefault();
+            alert('पासवर्ड किमान 6 अक्षरांचा असावा!');
+            return false;
+        }
+        
+        return true;
+    });
+    
+    // Mobile number validation
+    document.getElementById('mobile').addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+</script>
+{% endblock %}
+{% endblock %}

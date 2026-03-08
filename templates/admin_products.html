@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}उत्पादन व्यवस्थापन{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h3 class="mb-4">उत्पादन जोडा</h3>
+
+    <form method="POST" class="mb-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">उत्पादन नाव</label>
+                    <input type="text" name="name" placeholder="उत्पादनाचे नाव" class="form-control" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">CML Number</label>
+                    <input type="text" name="cml_no" placeholder="CML No" class="form-control mb-2">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">दर (₹)</label>
+                    <input type="number" name="rate" placeholder="दर" step="0.01" class="form-control" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">एकक</label>
+                    <select name="unit" class="form-control" required>
+                        <option value="">-- एकक निवडा --</option>
+                        <option value="piece">पीस (piece)</option>
+                        <option value="meter">मीटर (meter)</option>
+                        <option value="kg">किलो (kg)</option>
+                        <option value="box">बॉक्स (box)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">
+            <i class="fas fa-plus me-2"></i>उत्पादन जोडा
+        </button>
+    </form>
+
+    <hr class="my-4">
+
+    <h4 class="mb-3">सर्व उत्पादने</h4>
+    
+    {% if products %}
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>उत्पादन नाव</th>
+                    <th>CML No</th>
+                    <th>दर (₹)</th>
+                    <th>एकक</th>
+                    <th>क्रिया</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>
+                        <strong>{{ product.name }}</strong>
+                    </td>
+                    <td>{{ product.cml_no or '-' }}</td>
+                    <td>₹{{ "%.2f"|format(product.rate) }}</td>
+                    <td>{{ product.unit or '-' }}</td>
+                    <td>
+                        <a href="{{ url_for('edit_product', product_id=product._id) }}" 
+                           class="btn btn-warning btn-sm" 
+                           title="Edit">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="{{ url_for('delete_product', product_id=product._id) }}" 
+                           class="btn btn-danger btn-sm" 
+                           title="Delete"
+                           onclick="return confirm('हे उत्पादन delete करायचे आहे का?')">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        <i class="fas fa-info-circle me-2"></i>
+        अद्याप कोणतेही उत्पादन नाही
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

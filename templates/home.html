@@ -1,0 +1,538 @@
+{% extends 'base.html' %}
+
+{% block title %}Arihant Agro Services - कृषी उत्पादने व सेवा{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <i class="fas fa-award me-2"></i>विश्वसनीय कृषी साथीदार
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="text-highlight">Arihant Agro</span><br>
+                        Services
+                    </h1>
+                    <p class="hero-subtitle">
+                        शेतकऱ्यांसाठी उच्च दर्जाच्या कृषी उत्पादनांचा विश्वसनीय पुरवठादार.
+                        ड्रिप इरिगेशन सिस्टीम, स्प्रिंकलर संच, PVC व HDPE पाईप्स, मोटार व बोअरवेल पंप, प्लम्बिंग आणि
+                        बाथरूम फिटिंग, आणि बरेच काही.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="{{ url_for('products') }}" class="btn btn-primary btn-lg me-3">
+                            <i class="fas fa-boxes me-2"></i>उत्पादने पहा
+                        </a>
+                        {% if not session.user_id %}
+                        <a href="{{ url_for('register') }}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-user-plus me-2"></i>नोंदणी करा
+                        </a>
+                        {% else %}
+                        <a href="{{ url_for('new_quotation') }}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-file-invoice me-2"></i>कोटेशन तयार करा
+                        </a>
+                        {% endif %}
+                    </div>
+                    <div class="hero-stats mt-5">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="stat-item">
+                                    <h3 class="stat-number">5000+</h3>
+                                    <p class="stat-label">समाधानी ग्राहक</p>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item">
+                                    <h3 class="stat-number">12+</h3>
+                                    <p class="stat-label">वर्षे अनुभव</p>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item">
+                                    <h3 class="stat-number">6+</h3>
+                                    <p class="stat-label">प्रसिद्ध ब्रँड्स</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="hero-image">
+                    <img src="{{ url_for('static', filename='images/hero-agriculture.png') }}" alt="Agriculture"
+                        class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-wave">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
+                fill="white" />
+        </svg>
+    </div>
+</section>
+<!-- Government Subsidy Help Section -->
+<section class="subsidy-section py-5">
+    <div class="container">
+
+        <div class="subsidy-box text-center">
+
+            <span class="section-badge">Government Subsidy Help</span>
+
+            <h2 class="section-title">शासकीय सबसिडी मिळवण्यासाठी मदत</h2>
+
+            <p class="subsidy-text">
+                शेतकऱ्यांना सरकारकडून मिळणाऱ्या विविध कृषी योजनांच्या सबसिडीसाठी
+                <strong>Arihant Agro Services</strong> कडून पूर्ण मार्गदर्शन दिले जाईल.
+                आवश्यक कागदपत्रे, प्रोडक्ट माहिती आणि सबसिडीसाठी आवश्यक
+                <strong>Product Quotation</strong> उपलब्ध करून दिले जाईल.
+            </p>
+
+            <p class="subsidy-text">
+                आमच्या मदतीने शेतकरी बांधव विविध सरकारी योजनांचा लाभ घेऊ शकतात.
+            </p>
+
+            <div class="subsidy-buttons mt-4">
+
+                <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg me-3">
+                    <i class="fas fa-phone-alt me-2"></i>
+                    सबसिडी माहिती साठी संपर्क करा
+                </a>
+
+                <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-file-invoice me-2"></i>
+                    सबसिडी साठी Product Quotation मिळवा
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Government Portal Cards -->
+        <div class="row mt-5">
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <a href="https://mahapocra.gov.in/mr" target="_blank" class="gov-card">
+                    <i class="fas fa-leaf"></i>
+                    <h5>POCRA</h5>
+                    <p>नानाजी देशमुख कृषी संजीवनी योजना</p>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <a href="https://mahadbt.maharashtra.gov.in/" target="_blank" class="gov-card">
+                    <i class="fas fa-database"></i>
+                    <h5>MahaDBT</h5>
+                    <p>कृषी सबसिडी योजना</p>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <a href="https://bhulekh.mahabhumi.gov.in/" target="_blank" class="gov-card">
+                    <i class="fas fa-map"></i>
+                    <h5>Mahabhulekh</h5>
+                    <p>जमिनीचे 7/12 आणि 8A</p>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <a href="https://pmfby.gov.in/" target="_blank" class="gov-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h5>किसान विमा</h5>
+                    <p>प्रधानमंत्री फसल बीमा योजना</p>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <a href="https://pmkisan.gov.in/" target="_blank" class="gov-card">
+                    <i class="fas fa-rupee-sign"></i>
+                    <h5>PM Kisan</h5>
+                    <p>किसान सम्मान निधी योजना</p>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <a href="https://pmkusum.mnre.gov.in/" target="_blank" class="gov-card">
+                    <i class="fas fa-solar-panel"></i>
+                    <h5>PM Kusum</h5>
+                    <p>सौर ऊर्जा पंप योजना</p>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <a href="https://www.mahadiscom.in/solar_MTSKPY/faq.php" target="_blank" class="gov-card">
+                    <i class="fas fa-bolt"></i>
+                    <h5>State Electricity</h5>
+                    <p>मुख्यमंत्री सौर कृषी पंप योजना</p>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <a href="https://www.mahaurja.maharashtra.gov.in/" target="_blank" class="gov-card">
+                    <i class="fas fa-solar-panel"></i>
+                    <h5>MahaUrja</h5>
+                    <p>नवीकरणीय ऊर्जा योजना माहिती</p>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-badge">Our Strengths</span>
+            <h2 class="section-title">आमची वैशिष्ट्ये</h2>
+            <p class="section-subtitle">शेतकऱ्यांच्या गरजांनुसार उत्तम दर्जाची उत्पादने आणि सेवा</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h4 class="feature-title">प्रमाणित उत्पादने</h4>
+                    <p class="feature-text">सर्व उत्पादने ISI मानकांनुसार प्रमाणित आणि उच्च दर्जाची</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h4 class="feature-title">स्पर्धात्मक किंमत</h4>
+                    <p class="feature-text">बाजारातील सर्वोत्तम किंमतीत उच्च दर्जाची उत्पादने</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h4 class="feature-title">वेळेवर डिलिव्हरी</h4>
+                    <p class="feature-text">तुमच्या शेतापर्यंत वेळेवर आणि सुरक्षित डिलिव्हरी</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4 class="feature-title">तांत्रिक सहाय्य</h4>
+                    <p class="feature-text">अनुभवी तज्ञांकडून 24/7 तांत्रिक सहाय्य आणि मार्गदर्शन</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Preview Section -->
+<section class="products-preview-section py-5 bg-light">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-badge">Our Products</span>
+            <h2 class="section-title">आमची उत्पादने</h2>
+            <p class="section-subtitle">कृषी क्षेत्रासाठी आवश्यक सर्व प्रकारची उत्पादने</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="{{ url_for('static', filename='images/drip-irrigation.jpg') }}" alt="Drip Irrigation"
+                            class="img-fluid">
+                        <div class="product-overlay">
+                            <a href="{{ url_for('products') }}" class="btn btn-light">अधिक माहिती</a>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h4 class="product-title">ड्रिप इरिगेशन सिस्टीम</h4>
+                        <p class="product-text">पाणी बचत करण्यासाठी आधुनिक ड्रिप इरिगेशन सिस्टीम</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="{{ url_for('static', filename='images/sprinkler.jpg') }}" alt="Sprinkler"
+                            class="img-fluid">
+                        <div class="product-overlay">
+                            <a href="{{ url_for('products') }}" class="btn btn-light">अधिक माहिती</a>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h4 class="product-title">स्प्रिंकलर सिस्टीम</h4>
+                        <p class="product-text">मोठ्या क्षेत्रासाठी अत्यंत प्रभावी स्प्रिंकलर सिस्टीम</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="{{ url_for('static', filename='images/hdpe-pipes.jpg') }}" alt="HDPE Pipes"
+                            class="img-fluid">
+                        <div class="product-overlay">
+                            <a href="{{ url_for('products') }}" class="btn btn-light">अधिक माहिती</a>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h4 class="product-title">HDPE पाईप्स</h4>
+                        <p class="product-text">उच्च दाब सहन करण्यासाठी मजबूत HDPE पाईप्स</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('products') }}" class="btn btn-primary btn-lg">
+                <i class="fas fa-th-large me-2"></i>सर्व उत्पादने पहा
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- Brands Section -->
+<section class="brands-section py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-badge">Authorized Dealer</span>
+            <h2 class="section-title">आमचे ब्रँड्स</h2>
+            <p class="section-subtitle">प्रसिद्ध कंपन्यांचे अधिकृत वितरक</p>
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-2 col-md-4 col-6 mb-4">
+                <div class="brand-card">
+                    <img src="{{ url_for('static', filename='images/brand-jain.jpeg') }}" alt="Jain Irrigation">
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 mb-4">
+                <div class="brand-card">
+                    <img src="{{ url_for('static', filename='images/brand-supreme.jpeg') }}" alt="Supreme">
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 mb-4">
+                <div class="brand-card">
+                    <img src="{{ url_for('static', filename='images/brand-finolex.jpeg') }}" alt="Finolex">
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 mb-4">
+                <div class="brand-card">
+                    <img src="{{ url_for('static', filename='images/brand-sona.jpeg') }}" alt="Sona">
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 mb-4">
+                <div class="brand-card">
+                    <img src="{{ url_for('static', filename='images/brand-johnson.jpeg') }}" alt="Johnson Pumps">
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 mb-4">
+                <div class="brand-card">
+                    <img src="{{ url_for('static', filename='images/brand-prayag.jpeg') }}" alt="Prayag">
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 mb-4">
+                <div class="brand-card">
+                    <img src="{{ url_for('static', filename='images/brand-ekki.jpeg') }}" alt="Ekki Pumps">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5">
+    <div class="container">
+        <div class="cta-box">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="cta-title">कोटेशन हवे आहे?</h2>
+                    <p class="cta-text">
+                        आमच्या उत्पादनांसाठी कोटेशन मिळवण्यासाठी आजच नोंदणी करा.
+                        फक्त काही मिनिटांत तुमचे कोटेशन तयार!
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    {% if not session.user_id %}
+                    <a href="{{ url_for('register') }}" class="btn btn-light btn-lg">
+                        <i class="fas fa-user-plus me-2"></i>आजच नोंदणी करा
+                    </a>
+                    {% else %}
+                    <a href="{{ url_for('new_quotation') }}" class="btn btn-light btn-lg">
+                        <i class="fas fa-file-invoice me-2"></i>कोटेशन तयार करा
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section py-5 bg-light">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-badge">Testimonials</span>
+            <h2 class="section-title">ग्राहकांचे अभिप्राय</h2>
+            <p class="section-subtitle">आमच्या समाधानी ग्राहकांचे मत</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Arihant Agro च्या उत्पादनांची गुणवत्ता खूप छान आहे.
+                        ड्रिप इरिगेशन सिस्टीम बसवल्यानंतर माझ्या पाण्याच्या बिलात खूप बचत झाली."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="author-info">
+                            <h5>रवी हेलगे </h5>
+                            <p>शेतकरी, टाकरखेड हेलगा</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "स्प्रिंकलर सिस्टीम खूप प्रभावी आहे. सेवा आणि तांत्रिक सहाय्य
+                        खूप छान आहे. सर्व शेतकऱ्यांना शिफारस करतो."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="author-info">
+                            <h5>राम देशमुख</h5>
+                            <p>शेतकरी, अमडापूर</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "HDPE पाईप्स चांगल्या दर्जाच्या आहेत. वैभव बेलोकर सरांचे मार्गदर्शन
+                        खूप उपयुक्त ठरले. धन्यवाद Arihant Agro!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="author-info">
+                            <h5>श्रीकांत वाकडे</h5>
+                            <p>शेतकरी, मंगरूळ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "HDPE पाईप्स चांगल्या दर्जाच्या आहेत. वैभव बेलोकर सरांचे मार्गदर्शन
+                        खूप उपयुक्त ठरले. धन्यवाद Arihant Agro!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="author-info">
+                            <h5>राम डाळिंबकर</h5>
+                            <p>शेतकरी, कव्हळा</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "HDPE पाईप्स चांगल्या दर्जाच्या आहेत. वैभव बेलोकर सरांचे मार्गदर्शन
+                        खूप उपयुक्त ठरले. धन्यवाद Arihant Agro!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="author-info">
+                            <h5>लक्ष्मण शेळके</h5>
+                            <p>शेतकरी, करणखेड</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "HDPE पाईप्स चांगल्या दर्जाच्या आहेत. वैभव बेलोकर सरांचे मार्गदर्शन
+                        खूप उपयुक्त ठरले. धन्यवाद Arihant Agro!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="author-info">
+                            <h5>गजानन पवार</h5>
+                            <p>शेतकरी, करवंड</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

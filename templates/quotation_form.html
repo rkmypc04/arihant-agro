@@ -1,0 +1,303 @@
+{% extends 'base.html' %}
+
+{% block title %}नवीन कोटेशन - Arihant Agro Services{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header page-header-small">
+    <div class="page-header-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="page-title">नवीन कोटेशन</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url_for('home') }}">मुख्यपृष्ठ</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url_for('dashboard') }}">डॅशबोर्ड</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">नवीन कोटेशन</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quotation Form Section -->
+<section class="quotation-form-section py-5">
+    <div class="container">
+        <form method="POST" action="{{ url_for('new_quotation') }}" id="quotationForm">
+            <!-- Company Info Card -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="company-info-card">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4 class="company-name">{{ company.name }}</h4>
+                                <p class="company-detail">
+                                    <i class="fas fa-map-marker-alt me-2"></i>{{ company.address }}
+                                </p>
+                                <p class="company-detail">
+                                    <i class="fas fa-user-tie me-2"></i>मालक: {{ company.proprietor }}
+                                </p>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <p class="company-detail">
+                                    <i class="fas fa-phone me-2"></i>{{ company.mobile }}
+                                </p>
+                                <p class="company-detail">
+                                    <i class="fas fa-id-card me-2"></i>GSTIN: {{ company.gstin }}
+                                </p>
+                                <p class="company-detail">
+                                    <i class="fas fa-envelope me-2"></i>{{ company.email }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Details -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="form-section-card">
+                        <h5 class="section-title">
+                            <i class="fas fa-user me-2"></i>ग्राहक तपशील
+                        </h5>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">ग्राहकाचे नाव *</label>
+                                <input type="text" class="form-control" name="customer_name" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">मोबाईल नंबर *</label>
+                                <input type="tel" class="form-control" name="customer_mobile" pattern="[0-9]{10}"
+                                    maxlength="10" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">आधार क्रमांक</label>
+                                <input type="text" class="form-control" name="aadhar" pattern="[0-9]{12}"
+                                    maxlength="12">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">गाव *</label>
+                                <input type="text" class="form-control" name="gaon" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">शिवार *</label>
+                                <input type="text" class="form-control" name="shivar" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">गट नंबर *</label>
+                                <input type="text" class="form-control" name="gat_no" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">क्षेत्रफळ (एकरी) *</label>
+                                <input type="text" class="form-control" name="shetra" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">तालुका *</label>
+                                <input type="text" class="form-control" name="taluka" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">जिल्हा *</label>
+                                <input type="text" class="form-control" name="jilha" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">शेतकरी ID</label>
+                                <input type="text" class="form-control" name="shetkari_id">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brand and Kit Selection -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="form-section-card">
+                        <h5 class="section-title">
+                            <i class="fas fa-certificate me-2"></i>ब्रँड आणि किट निवड
+                        </h5>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">ब्रँड (Company) *</label>
+                                <select class="form-select" name="brand" id="brandSelect" required>
+                                    <option value="">ब्रँड निवडा</option>
+                                    {% for brand in brands %}
+                                    <option value="{{ brand._id if brand._id else brand }}">{{ brand.name if brand.name
+                                        else brand }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">संच (पर्यायी)</label>
+                                <select class="form-select" id="kitSelect" name="kit">
+                                    <option value="">संच निवडा</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Items Section -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="form-section-card">
+                        <h5 class="section-title">
+                            <i class="fas fa-shopping-cart me-2"></i>उत्पादने
+                        </h5>
+                        <div class="items-container" id="itemsContainer">
+                            <!-- Item Row Template -->
+                            <div class="item-row border rounded p-3 mb-3" data-row="0">
+                                <div class="row align-items-end">
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">उत्पादन *</label>
+                                        <select class="form-select product-select" name="product_id[]" required
+                                            onchange="updateProductInfo(this)">
+                                            <option value="">उत्पादन निवडा</option>
+                                            {% for product in products %}
+                                            <option value="{{ product._id }}" data-rate="{{ product.rate }}"
+                                                data-cml="{{ product.cml_no }}" data-unit="{{ product.unit }}">
+                                                {{ product.name }}
+                                            </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label class="form-label">CML नं.</label>
+                                        <input type="text" class="form-control cml-input" readonly>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label class="form-label">साईझ</label>
+                                        <input type="text" class="form-control" name="size[]" placeholder="उदा. 63mm">
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label class="form-label">प्रमाण *</label>
+                                        <input type="number" class="form-control quantity-input" name="quantity[]"
+                                            min="1" value="1" required onchange="calculateTotals()">
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <label class="form-label">दर (₹)</label>
+                                        {% if session.get('is_admin') %}
+                                        <input type="number" step="0.01" name="rate[]" class="form-control rate-input"
+                                            onchange="calculateTotals()">
+                                        {% else %}
+                                        <input type="text" class="form-control rate-input" readonly>
+                                        <input type="hidden" name="rate[]" class="hidden-rate">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-end">
+                                        <button type="button" class="btn btn-danger btn-sm remove-item"
+                                            onclick="removeItemRow(this)">
+                                            <i class="fas fa-trash"></i> काढून टाका
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-outline-primary" id="addItemBtn">
+                            <i class="fas fa-plus me-2"></i>आणखी उत्पादन जोडा
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Discount Section -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="form-section-card">
+                        <h5 class="section-title">
+                            <i class="fas fa-percent me-2"></i>सूट
+                        </h5>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label">सूट (%)</label>
+                                <input type="number" class="form-control" name="discount" id="discountInput" min="0"
+                                    max="100" value="0" step="0.01" onchange="calculateTotals()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculation Summary -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="calculation-card">
+                        <h5 class="section-title">
+                            <i class="fas fa-calculator me-2"></i>गणना
+                        </h5>
+                        <div class="calculation-table">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td>एकूण रक्कम:</td>
+                                    <td class="text-end"><strong id="subTotal">₹0.00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>सूट (<span id="discountPercent">0</span>%):</td>
+                                    <td class="text-end"><strong id="discountAmount">₹0.00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>करयोग्य रक्कम:</td>
+                                    <td class="text-end"><strong id="taxableAmount">₹0.00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>CGST (2.5%):</td>
+                                    <td class="text-end"><strong id="cgstAmount">₹0.00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>SGST (2.5%):</td>
+                                    <td class="text-end"><strong id="sgstAmount">₹0.00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>एकूण GST:</td>
+                                    <td class="text-end"><strong id="totalGst">₹0.00</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Round Off:</td>
+                                    <td class="text-end"><strong id="roundOff">₹0.00</strong></td>
+                                </tr>
+                                <tr class="grand-total-row">
+                                    <td>
+                                        <h5>एकूण रक्कम:</h5>
+                                    </td>
+                                    <td class="text-end">
+                                        <h5 id="finalAmount">₹0.00</h5>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="text-center">
+                                        <em id="amountInWords">शून्य रुपये फक्त</em>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Buttons -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="submit-section">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-save me-2"></i>कोटेशन तयार करा
+                        </button>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary btn-lg ms-2">
+                            <i class="fas fa-times me-2"></i>रद्द करा
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

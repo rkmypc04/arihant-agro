@@ -1,0 +1,340 @@
+{% extends 'base.html' %}
+
+{% block title %}ब्रँड्स - Arihant Agro Services{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="page-header-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="page-title">आमचे ब्रँड्स</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url_for('home') }}">मुख्यपृष्ठ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">ब्रँड्स</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Brands Section -->
+<section class="brands-section py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-badge">Authorized Dealer</span>
+            <h2 class="section-title">प्रसिद्ध ब्रँड्सचे अधिकृत वितरक</h2>
+            <p class="section-subtitle">जगप्रसिद्ध कंपन्यांची उत्पादने</p>
+        </div>
+        
+        <div class="row">
+            <!-- Jain Irrigation -->
+            <div class="col-lg-6 mb-4">
+                <div class="brand-detail-card h-100">
+                    <div class="row align-items-center h-100">
+                        <div class="col-md-4">
+                            <div class="brand-image text-center">
+                                <img src="{{ url_for('static', filename='images/brand-jain.png') }}" 
+                                     alt="Jain Irrigation" 
+                                     class="img-fluid"
+                                     onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/placeholder.png') }}'">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="brand-content">
+                                <h3 class="brand-name">Jain Irrigation Systems Ltd</h3>
+                                <p class="brand-description">
+                                    जगातील सर्वात मोठी ड्रिप इरिगेशन सिस्टीम उत्पादक कंपनी. 
+                                    Jain Irrigation Systems Ltd ही जलसंवर्धन आणि कृषी 
+                                    तंत्रज्ञानात जगातील अग्रगण्य कंपनी आहे.
+                                </p>
+                                <ul class="brand-products list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>ड्रिप इरिगेशन सिस्टीम</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>स्प्रिंकलर सिस्टीम</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>पीव्हीसी पाईप्स</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>फिल्टर्स आणि वाल्व्ह</li>
+                                </ul>
+                                <a href="https://www.jains.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-external-link-alt me-2"></i>अधिक माहिती
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Supreme -->
+            <div class="col-lg-6 mb-4">
+                <div class="brand-detail-card h-100">
+                    <div class="row align-items-center h-100">
+                        <div class="col-md-4">
+                            <div class="brand-image text-center">
+                                <img src="{{ url_for('static', filename='images/brand-supreme.png') }}" 
+                                     alt="Supreme" 
+                                     class="img-fluid"
+                                     onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/placeholder.png') }}'">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="brand-content">
+                                <h3 class="brand-name">Supreme Industries</h3>
+                                <p class="brand-description">
+                                    भारतातील सर्वात मोठी प्लास्टिक उत्पादन कंपनी. 
+                                    Supreme Industries उच्च दर्जाचे प्लास्टिक पाईप्स, 
+                                    फिटिंग्स आणि इतर उत्पादने तयार करते.
+                                </p>
+                                <ul class="brand-products list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>HDPE पाईप्स</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>CPVC पाईप्स</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>UPVC पाईप्स</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>फिटिंग्स आणि अ‍ॅक्सेसरीज</li>
+                                </ul>
+                                <a href="https://www.supreme.co.in" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-external-link-alt me-2"></i>अधिक माहिती
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Praytag -->
+            <div class="col-lg-6 mb-4">
+                <div class="brand-detail-card h-100">
+                    <div class="row align-items-center h-100">
+                        <div class="col-md-4">
+                            <div class="brand-image text-center">
+                                <img src="{{ url_for('static', filename='images/brand-praytag.png') }}" 
+                                     alt="Praytag" 
+                                     class="img-fluid"
+                                     onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/placeholder.png') }}'">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="brand-content">
+                                <h3 class="brand-name">Praytag</h3>
+                                <p class="brand-description">
+                                    कृषी क्षेत्रासाठी विशेषतः डिझाइन केलेली उत्पादने. 
+                                    Praytag च्या उत्पादनांची गुणवत्ता आणि टिकाऊपणा 
+                                    शेतकऱ्यांमध्ये लोकप्रिय आहे.
+                                </p>
+                                <ul class="brand-products list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>ड्रिप लेटरल ट्यूब</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>ऑनलाइन ड्रिपर्स</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>स्प्रिंकलर अ‍ॅक्सेसरीज</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>कपलर्स आणि फिटिंग्स</li>
+                                </ul>
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-external-link-alt me-2"></i>अधिक माहिती
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PSG -->
+            <div class="col-lg-6 mb-4">
+                <div class="brand-detail-card h-100">
+                    <div class="row align-items-center h-100">
+                        <div class="col-md-4">
+                            <div class="brand-image text-center">
+                                <img src="{{ url_for('static', filename='images/brand-psg.png') }}" 
+                                     alt="PSG" 
+                                     class="img-fluid"
+                                     onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/placeholder.png') }}'">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="brand-content">
+                                <h3 class="brand-name">PSG</h3>
+                                <p class="brand-description">
+                                    कृषी पंप आणि मोटार उत्पादनात अग्रगण्य. 
+                                    PSG चे पंप सेट उच्च कार्यक्षमता आणि 
+                                    टिकाऊपणासाठी प्रसिद्ध आहेत.
+                                </p>
+                                <ul class="brand-products list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>पंप सेट</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>सबमर्सिबल पंप</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>मोटार</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>स्प्रे पंप</li>
+                                </ul>
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-external-link-alt me-2"></i>अधिक माहिती
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sona -->
+            <div class="col-lg-6 mb-4">
+                <div class="brand-detail-card h-100">
+                    <div class="row align-items-center h-100">
+                        <div class="col-md-4">
+                            <div class="brand-image text-center">
+                                <img src="{{ url_for('static', filename='images/brand-sona.png') }}" 
+                                     alt="Sona" 
+                                     class="img-fluid"
+                                     onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/placeholder.png') }}'">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="brand-content">
+                                <h3 class="brand-name">Sona</h3>
+                                <p class="brand-description">
+                                    कृषी उपकरणे आणि साधने उत्पादनात विशेषज्ञ. 
+                                    Sona ची उत्पादने शेतकऱ्यांच्या गरजांनुसार 
+                                    डिझाइन केलेली आहेत.
+                                </p>
+                                <ul class="brand-products list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>स्प्रे पंप</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>हातपंप</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>कृषी साधने</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>अ‍ॅक्सेसरीज</li>
+                                </ul>
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-external-link-alt me-2"></i>अधिक माहिती
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Finolex -->
+            <div class="col-lg-6 mb-4">
+                <div class="brand-detail-card h-100">
+                    <div class="row align-items-center h-100">
+                        <div class="col-md-4">
+                            <div class="brand-image text-center">
+                                <img src="{{ url_for('static', filename='images/brand-finolex.png') }}" 
+                                     alt="Finolex" 
+                                     class="img-fluid"
+                                     onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/placeholder.png') }}'">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="brand-content">
+                                <h3 class="brand-name">Finolex</h3>
+                                <p class="brand-description">
+                                    भारतातील विश्वसनीय प्लंबिंग आणि सॅनिटरी ब्रँड. 
+                                    Finolex ची उत्पादने उच्च दर्जाची आणि 
+                                    टिकाऊ असल्याने ग्राहकांचा विश्वास आहे.
+                                </p>
+                                <ul class="brand-products list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>CPVC पाईप्स</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>UPVC पाईप्स</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>सॅनिटरी वेअर</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>फिटिंग्स</li>
+                                </ul>
+                                <a href="https://www.finolex.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-external-link-alt me-2"></i>अधिक माहिती
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="why-choose-section py-5 bg-light">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-badge">Our Advantage</span>
+            <h2 class="section-title">अधिकृत वितरक असल्याचे फायदे</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="advantage-card h-100 text-center p-4">
+                    <div class="advantage-icon mb-3">
+                        <i class="fas fa-certificate fa-3x text-primary"></i>
+                    </div>
+                    <h4>मूळ उत्पादने</h4>
+                    <p>100% मूळ आणि प्रमाणित उत्पादनांची खात्री</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="advantage-card h-100 text-center p-4">
+                    <div class="advantage-icon mb-3">
+                        <i class="fas fa-warranty fa-3x text-primary"></i>
+                    </div>
+                    <h4>वॉरंटी सहाय्य</h4>
+                    <p>कंपनीच्या वॉरंटीचा पूर्ण लाभ</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="advantage-card h-100 text-center p-4">
+                    <div class="advantage-icon mb-3">
+                        <i class="fas fa-tools fa-3x text-primary"></i>
+                    </div>
+                    <h4>तांत्रिक सहाय्य</h4>
+                    <p>प्रशिक्षित तंत्रज्ञांकडून सेवा</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="advantage-card h-100 text-center p-4">
+                    <div class="advantage-icon mb-3">
+                        <i class="fas fa-tags fa-3x text-primary"></i>
+                    </div>
+                    <h4>स्पर्धात्मक किंमत</h4>
+                    <p>कंपनीच्या दरात सर्वोत्तम किंमत</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="advantage-card h-100 text-center p-4">
+                    <div class="advantage-icon mb-3">
+                        <i class="fas fa-truck fa-3x text-primary"></i>
+                    </div>
+                    <h4>वेळेवर डिलिव्हरी</h4>
+                    <p>स्टॉकमधून लगेच पुरवठा</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="advantage-card h-100 text-center p-4">
+                    <div class="advantage-icon mb-3">
+                        <i class="fas fa-headset fa-3x text-primary"></i>
+                    </div>
+                    <h4>आफ्टर-सेल्स सेवा</h4>
+                    <p>विक्रीनंतर पूर्ण सहाय्य आणि सेवा</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5">
+    <div class="container">
+        <div class="cta-box bg-primary text-white p-5 rounded">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="cta-title">कोटेशन हवे आहे?</h2>
+                    <p class="cta-text mb-0">
+                        या प्रसिद्ध ब्रँड्सच्या उत्पादनांसाठी कोटेशन मिळवण्यासाठी 
+                        आजच संपर्क साधा.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                    {% if not session.user_id %}
+                    <a href="{{ url_for('register') }}" class="btn btn-light btn-lg">
+                        <i class="fas fa-user-plus me-2"></i>नोंदणी करा
+                    </a>
+                    {% else %}
+                    <a href="{{ url_for('new_quotation') }}" class="btn btn-light btn-lg">
+                        <i class="fas fa-file-invoice me-2"></i>कोटेशन तयार करा
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

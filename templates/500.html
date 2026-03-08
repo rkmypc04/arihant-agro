@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}सर्वर त्रुटी - Arihant Agro Services{% endblock %}
+
+{% block content %}
+<section class="error-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <div class="error-content">
+                    <div class="error-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h1 class="error-code">500</h1>
+                    <h2 class="error-title">सर्वर त्रुटी</h2>
+                    <p class="error-text">
+                        काहीतरी चुकले आहे. कृपया पुन्हा प्रयत्न करा किंवा नंतर प्रयत्न करा.
+                    </p>
+                    <a href="{{ url_for('home') }}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-home me-2"></i>मुख्यपृष्ठावर जा
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.error-section {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+.error-content {
+    padding: 3rem;
+}
+
+.error-icon {
+    font-size: 5rem;
+    color: #DC3545;
+    margin-bottom: 1rem;
+}
+
+.error-code {
+    font-size: 8rem;
+    font-weight: 700;
+    color: #DC3545;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.error-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.error-text {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+</style>
+{% endblock %}

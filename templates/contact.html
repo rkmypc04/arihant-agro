@@ -1,0 +1,270 @@
+{% extends 'base.html' %}
+
+{% block title %}संपर्क - Arihant Agro Services{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="page-header-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="page-title">संपर्क करा</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url_for('home') }}">मुख्यपृष्ठ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">संपर्क</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-badge">Get In Touch</span>
+            <h2 class="section-title">आमच्याशी संपर्क साधा</h2>
+            <p class="section-subtitle">कोणत्याही प्रश्नासाठी आम्हाला संपर्क करा</p>
+        </div>
+        
+        <div class="row">
+            <!-- Contact Info -->
+            <div class="col-lg-4 mb-4">
+                <div class="contact-info-card">
+                    <h3 class="contact-title">संपर्क माहिती</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>पत्ता</h5>
+                            <p>{{ company.address }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>मोबाईल</h5>
+                            <p>
+                                <a href="tel:9604373777">9604373777</a><br>
+                                <a href="tel:9860989891">9860989891</a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>ईमेल</h5>
+                            <p>
+                                <a href="mailto:{{ company.email }}">{{ company.email }}</a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>GSTIN</h5>
+                            <p>{{ company.gstin }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>मालक</h5>
+                            <p>{{ company.proprietor }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links mt-4">
+                        <h5>सोशल मीडिया</h5>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="col-lg-8 mb-4">
+                <div class="contact-form-card">
+                    <h3 class="contact-title">संदेश पाठवा</h3>
+                    <form id="contactForm" action="{{ url_for('contact') }}" method="POST">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">पूर्ण नाव *</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="mobile" class="form-label">मोबाईल नंबर *</label>
+                                <input type="tel" class="form-control" id="mobile" name="mobile" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">ईमेल</label>
+                                <input type="email" class="form-control" id="email" name="email">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="subject" class="form-label">विषय *</label>
+                                <select class="form-select" id="subject" name="subject" required>
+                                    <option value="">विषय निवडा</option>
+                                    <option value="quotation">कोटेशन हवे आहे</option>
+                                    <option value="product">उत्पादनाबद्दल माहिती</option>
+                                    <option value="service">सेवा हवी आहे</option>
+                                    <option value="complaint">तक्रार</option>
+                                    <option value="other">इतर</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">संदेश *</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-paper-plane me-2"></i>संदेश पाठवा
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<section class="map-section py-5 bg-light">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-badge">Location</span>
+            <h2 class="section-title">आमचे स्थान</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3726.1234567890123!2d76.12345678901234!3d20.123456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDA3JzI0LjQiTiA3NsKwMDcnMjQuNCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Working Hours Section -->
+<section class="working-hours-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="working-hours-card">
+                    <h3 class="text-center mb-4"><i class="fas fa-clock me-2"></i>कामाचे तास</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>सोमवार - शनिवार:</strong></td>
+                                    <td>सकाळी 9:00 - संध्याकाळी 7:00</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>रविवार:</strong></td>
+                                    <td>सकाळी 10:00 - दुपारी 2:00</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="emergency-contact">
+                                <h5><i class="fas fa-phone-alt me-2 text-danger"></i>तातडीचा संपर्क</h5>
+                                <p class="mb-0">
+                                    <a href="tel:9604373737" class="btn btn-outline-danger">
+                                        <i class="fas fa-phone me-2"></i>9604373777
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bank Details Section -->
+<section class="bank-details-section py-5 bg-light">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-badge">Payment</span>
+            <h2 class="section-title">बँक तपशील</h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="bank-card">
+                    <div class="bank-header">
+                        <i class="fas fa-university"></i>
+                        <h4>{{ company.bank_name }}</h4>
+                    </div>
+                    <div class="bank-body">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><strong>खातेदाराचे नाव:</strong></td>
+                                <td>{{ company.name }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>शाखा:</strong></td>
+                                <td>{{ company.branch }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>खाते क्रमांक:</strong></td>
+                                <td>{{ company.account_no }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>IFSC कोड:</strong></td>
+                                <td>{{ company.ifsc }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block extra_js %}
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(this);
+        
+        // Show success message (in real implementation, send to server)
+        alert('तुमचा संदेश पाठवला गेला आहे. आम्ही लवकरच तुमच्याशी संपर्क साधू.');
+        
+        // Reset form
+        this.reset();
+    });
+</script>
+{% endblock %}
+{% endblock %}

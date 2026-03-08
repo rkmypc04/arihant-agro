@@ -1,0 +1,795 @@
+{% extends 'base.html' %}
+
+{% block title %}कोटेशन पूर्वावलोकन - Arihant Agro Services{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header page-header-small">
+    <div class="page-header-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="page-title">कोटेशन पूर्वावलोकन</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url_for('home') }}">मुख्यपृष्ठ</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url_for('dashboard') }}">डॅशबोर्ड</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">पूर्वावलोकन</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quotation Preview Section -->
+<section class="quotation-preview-section">
+    <div class="container">
+        <!-- Action Buttons -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="action-buttons text-center">
+                    <a href="{{ url_for('download_quotation', quotation_id=quotation._id) }}"
+                        class="btn btn-success btn-lg">
+                        <i class="fas fa-download me-2"></i>PDF डाउनलोड
+                    </a>
+                    <button class="btn btn-primary btn-lg" onclick="window.print()">
+                        <i class="fas fa-print me-2"></i>प्रिंट
+                    </button>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary btn-lg">
+                        <i class="fas fa-arrow-left me-2"></i>डॅशबोर्डवर जा
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quotation Document -->
+        <div class="row">
+            <div class="col-12">
+                <div class="quotation-document" id="quotationDocument">
+                    <!-- Header - 3 Column Layout -->
+                    <div class="quotation-header">
+                        <div class="preview-header-grid">
+                            <!-- LEFT: LOGO -->
+                            <div class="preview-logo-section">
+                                <img src="{{ url_for('static', filename='images/Arihant_Logo.png') }}"
+                                    alt="Arihant Logo" class="company-logo-img">
+                            </div>
+                            <!-- CENTER: COMPANY DETAILS -->
+                            <div class="preview-company-section">
+                                <h2 class="company-name">Arihant Agro Services</h2>
+                                <p class="company-address mb-1">
+                                    <strong>Proprietor:</strong> {{ company.proprietor }}
+                                </p>
+                                <p class="company-address mb-1">
+                                    <strong>Mobile:</strong> {{ company.mobile }}
+                                </p>
+                                <p class="company-address mb-1">
+                                    {{ company.address }}
+                                </p>
+                                <p class="company-address mb-0">
+                                    <strong>GSTIN:</strong> {{ company.gstin }}
+                                </p>
+                            </div>
+                            <!-- RIGHT: QUOTE & BRAND -->
+                            <div class="preview-brand-section">
+                                <h3 class="quotation-title mb-2">QUOTATION</h3>
+                                <p class="quotation-detail mb-1">
+                                    <strong>Quote No:</strong> {{ quotation.quotation_no }}
+                                </p>
+                                <p class="quotation-detail mb-2">
+                                    <strong>Date:</strong> {% if quotation.date %}{{ quotation.date.strftime('%d/%m/%Y')
+                                    }}{% else %}-{% endif %}
+                                </p>
+                                {% if quotation.brand_company %}
+                                <div class="brand-preview-box mt-2">
+                                    {% if quotation.brand_logo %}
+                                    <img src="{{ url_for('static', filename='images/brands/' + quotation.brand_logo) }}"
+                                        alt="{{ quotation.brand_company }}" class="brand-logo-img">
+                                    {% endif %}
+                                    <p class="fw-bold mb-0">{{ quotation.brand_company }}</p>
+                                    {% if quotation.brand_details %}
+                                    <p class="small text-muted mb-0">{{ quotation.brand_details }}</p>
+                                    {% endif %}
+                                </div>
+                                {% else %}
+                                <p class="quotation-detail mb-0">
+                                    <strong>Brand:</strong> {{ quotation.brand }}
+                                </p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customer Details -->
+                    <div class="customer-section">
+                        <h5 class="section-title">ग्राहक तपशील</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <table class="table table-sm table-borderless">
+                                    <tr>
+                                        <td width="40%"><strong>नाव:</strong></td>
+                                        <td>{{ quotation.customer.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>मोबाईल:</strong></td>
+                                        <td>{{ quotation.customer.mobile }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>गाव:</strong></td>
+                                        <td>{{ quotation.customer.gaon }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>शिवार:</strong></td>
+                                        <td>{{ quotation.customer.shivar }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>गट नंबर:</strong></td>
+                                        <td>{{ quotation.customer.gat_no }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <table class="table table-sm table-borderless">
+                                    <tr>
+                                        <td width="40%"><strong>क्षेत्रफळ:</strong></td>
+                                        <td>{{ quotation.customer.shetra }} एकर</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>तालुका:</strong></td>
+                                        <td>{{ quotation.customer.taluka }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>जिल्हा:</strong></td>
+                                        <td>{{ quotation.customer.jilha }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>आधार:</strong></td>
+                                        <td>{{ quotation.customer.aadhar or '-' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>शेतकरी ID:</strong></td>
+                                        <td>{{ quotation.customer.shetkari_id or '-' }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Items Table -->
+                    <div class="items-section">
+                        <h5 class="section-title">वस्तूंचा तपशील</h5>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>क्र.</th>
+                                        <th>उत्पादन</th>
+                                        <th>CML क्र.</th>
+                                        <th>साईझ</th>
+                                        <th>प्रमाण</th>
+                                        <th>युनिट</th>
+                                        <th>दर (₹)</th>
+                                        <th>एकूण (₹)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in quotation["items"] %}
+                                    <tr>
+                                        <td>{{ loop.index }}</td>
+                                        <td>{{ item.product_name }}</td>
+                                        <td>{{ item.cml_no }}</td>
+                                        <td>{{ item.size or '-' }}</td>
+                                        <td class="text-end">{{ item.quantity }}</td>
+                                        <td>{{ item.unit }}</td>
+                                        <td class="text-end">{{ "%.2f"|format(item.rate) }}</td>
+                                        <td class="text-end">{{ "%.2f"|format(item.amount) }}</td>
+                                    </tr>
+                                    {% else %}
+                                    <tr>
+                                        <td colspan="8" class="text-center text-muted">कोणतीही वस्तू नाही</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Calculation - WITHOUT BOX -->
+                    <div class="calculation-section">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- Amount Words -->
+                                <div class="amount-words-section">
+                                    <p class="fw-bold mb-1">अक्षरी रक्कम:</p>
+                                    <p class="mb-1">{{ quotation.amount_in_words_marathi }}</p>
+                                    <p class="text-muted small">{{ quotation.amount_in_words }}</p>
+                                </div>
+
+                                <!-- Bank Details -->
+                                <div class="bank-section mt-2">
+                                    <p class="fw-bold mb-1">Bank Details</p>
+                                    <p class="small mb-0"><strong>{{ company.bank_name }}</strong></p>
+                                    <p class="small mb-0">A/C: {{ company.account_no }}</p>
+                                    <p class="small mb-0">IFSC: {{ company.ifsc }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Totals Table - WITHOUT BOX -->
+                                <table class="table table-sm table-borderless calculation-table mb-0">
+                                    <tr>
+                                        <td>एकूण रक्कम (Subtotal):</td>
+                                        <td class="text-end">₹ {{ "%.2f"|format(quotation.sub_total) }}</td>
+                                    </tr>
+                                    {% if quotation.discount_amount > 0 %}
+                                    <tr>
+                                        <td>सूट ({{ "%.2f"|format(quotation.discount_percent or 0) }}%):</td>
+                                        <td class="text-end">- ₹ {{ "%.2f"|format(quotation.discount_amount) }}</td>
+                                    </tr>
+                                    {% endif %}
+                                    <tr>
+                                        <td>करयोग्य रक्कम (Taxable):</td>
+                                        <td class="text-end">₹ {{ "%.2f"|format(quotation.taxable_amount) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CGST (2.5%):</td>
+                                        <td class="text-end">₹ {{ "%.2f"|format(quotation.cgst) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SGST (2.5%):</td>
+                                        <td class="text-end">₹ {{ "%.2f"|format(quotation.sgst) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>एकूण GST (Total GST):</td>
+                                        <td class="text-end">₹ {{ "%.2f"|format(quotation.cgst + quotation.sgst) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Round Off:</td>
+                                        <td class="text-end">₹ {{ "%.2f"|format(quotation.round_off) }}</td>
+                                    </tr>
+                                    <tr class="grand-total">
+                                        <td><strong>एकूण रक्कम (Grand Total):</strong></td>
+                                        <td class="text-end"><strong>₹ {{ "%.2f"|format(quotation.final_amount)
+                                                }}</strong></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Signature Section -->
+                    <div class="signature-section">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="signature-box">
+                                    <div class="signature-line mb-2"></div>
+                                    <p class="signature-label mb-0">ग्राहकाची सही (Customer Signature)</p>
+                                    <p class="signature-name fw-bold">{{ quotation.customer.name }}</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="signature-box text-end">
+                                    <div class="signature-line mb-2"></div>
+                                    <p class="signature-label mb-0">{{ company.name }} साठी (For {{ company.name }})</p>
+                                    <p class="signature-name fw-bold">{{ company.name }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="quotation-footer mt-4 pt-3">
+                        <p class="text-center mb-1">
+                            <i class="fas fa-phone me-2"></i>{{ company.mobile }} | <i
+                                class="fas fa-envelope me-2"></i>{{ company.email }}
+                        </p>
+                        <p class="text-center text-muted small mt-2 mb-0">
+                            {{ company.name }} निवडल्याबद्दल धन्यवाद! (Thank you for choosing {{ company.name }}!)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons (Bottom) -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="action-buttons text-center">
+                    <a href="{{ url_for('download_quotation', quotation_id=quotation._id) }}"
+                        class="btn btn-success btn-lg">
+                        <i class="fas fa-download me-2"></i>PDF डाउनलोड
+                    </a>
+                    <button class="btn btn-primary btn-lg" onclick="window.print()">
+                        <i class="fas fa-print me-2"></i>प्रिंट
+                    </button>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary btn-lg">
+                        <i class="fas fa-arrow-left me-2"></i>डॅशबोर्डवर जा
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Quotation Document Styles */
+    .quotation-document {
+        background: white;
+        padding: 30px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Header Styles - 3 Column Layout for Preview */
+    .quotation-header {
+        border-bottom: 2px solid #28a745;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+    }
+
+    .preview-header-grid {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .preview-logo-section {
+        width: 15%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .preview-company-section {
+        width: 50%;
+    }
+
+    .preview-brand-section {
+        width: 35%;
+        text-align: right;
+    }
+
+    .company-name {
+        color: #28a745;
+        font-weight: 700;
+        margin-bottom: 5px;
+        font-size: 24px;
+        line-height: 1.2;
+    }
+
+    .quotation-title {
+        color: #dc3545;
+        font-weight: 700;
+        margin-bottom: 10px;
+        font-size: 24px;
+    }
+
+    .company-address,
+    .company-detail,
+    .quotation-detail {
+        margin-bottom: 3px;
+        font-size: 11px;
+        line-height: 1.1;
+    }
+
+    .company-logo-img {
+        width: 120px;
+        object-fit: contain;
+    }
+
+    .brand-preview-box {
+        padding: 5px;
+        text-align: right;
+        background: #f8f9fa;
+        border-radius: 5px;
+        border-left: 3px solid #28a745;
+    }
+
+    .brand-logo-img {
+        height: 55px;
+        width: auto;
+        display: block;
+        margin-left: auto;
+        margin-bottom: 5px;
+        object-fit: contain;
+    }
+
+    /* Section Titles */
+    .section-title {
+        color: #000;
+        border-bottom: 2px solid #28a745;
+        padding: 8px 0;
+        margin-bottom: 6px;
+        font-weight: 600;
+        font-size: 13px;
+    }
+
+    /* Customer Section Compact */
+    .customer-section {
+        margin-top: 10px;
+    }
+
+    .customer-section table {
+        font-size: 11px;
+    }
+
+    .customer-section td {
+        padding: 2px 2px !important;
+        line-height: 1.1;
+    }
+
+    /* Items Table */
+    .items-section {
+        margin: 5px 0;
+    }
+
+    .items-section table {
+        font-size: 11px;
+    }
+
+    .items-section table th {
+        padding: 4px;
+        text-align: center;
+        vertical-align: middle;
+        background: #e9ecef;
+        font-weight: 600;
+    }
+
+    .items-section table td {
+        padding: 2px;
+        vertical-align: middle;
+    }
+
+    .items-section table tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    /* Calculation Section */
+    .calculation-section {
+        margin-top: 5px;
+    }
+
+    /* Calculation Table - NO BOX */
+    .calculation-table {
+        width: 100%;
+    }
+
+    .calculation-table td {
+        padding: 3px 2px;
+        line-height: 1.1;
+        font-size: 11px;
+        border: none;
+    }
+
+    .grand-total {
+        background: #e9ecef;
+        font-weight: 700;
+        border-top: 2px solid #28a745;
+    }
+
+    .grand-total td {
+        padding-top: 4px;
+    }
+
+    /* Amount in Words - NO BOX */
+    .amount-words-section {
+        margin-top: 2px;
+        padding: 0;
+        font-size: 11px;
+    }
+
+    .amount-words-section p {
+        font-size: 11px;
+    }
+
+    /* Bank Section */
+    .bank-section {
+        padding: 0;
+    }
+
+    .bank-section p {
+        font-size: 11px;
+        margin-bottom: 3px;
+    }
+
+    /* Signature Section */
+    .signature-section {
+        margin: 5px 0 5px;
+    }
+
+    .signature-box {
+        padding: 10px;
+    }
+
+    .signature-line {
+        border-bottom: 2px solid #333;
+        width: 80%;
+        height: 30px;
+    }
+
+    .signature-label {
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 2px;
+    }
+
+    .signature-name {
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
+    /* Footer */
+    .quotation-footer {
+    border-top: 2px solid #28a745;
+    padding-top: 4px;
+    margin-top: 4px;
+}
+
+    .quotation-footer p {
+        font-size: 13px;
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+        margin-bottom: 12px;
+    }
+
+    .action-buttons .btn {
+        margin: 0 5px;
+        min-width: 160px;
+        padding: 12px 20px;
+        font-weight: 500;
+        border-radius: 8px;
+    }
+
+    .action-buttons .btn i {
+        margin-right: 8px;
+    }
+
+    /* Print Styles */
+    @media print {
+        .quotation-document {
+            padding: 5px;
+        }
+
+        .items-section table {
+            font-size: 10px;
+        }
+
+        .customer-section table {
+            font-size: 10px;
+        }
+
+        .section-title {
+            font-size: 12px;
+        }
+
+        .signature-section {
+            margin-top: 20px;
+        }
+
+        .navbar,
+        .page-header,
+        .action-buttons,
+        .footer,
+        .breadcrumb,
+        .btn {
+            display: none;
+        }
+
+        .quotation-preview-section {
+            padding: 0;
+        }
+
+        .quotation-document {
+            box-shadow: none;
+            border: none;
+        }
+
+        .items-section table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .items-section table th,
+        .items-section table td {
+            border: 1px solid #000;
+        }
+
+        .signature-line {
+            border-bottom: 2px solid #000;
+        }
+
+        .items-section {
+            page-break-inside: avoid;
+        }
+
+        body {
+            font-size: 11pt;
+        }
+
+        h2 {
+            font-size: 16pt;
+        }
+
+        h3 {
+            font-size: 14pt;
+        }
+
+        .badge,
+        .btn,
+        .page-header,
+        .action-buttons {
+            display: none;
+        }
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .preview-header-grid {
+            flex-direction: column;
+        }
+
+        .preview-logo-section,
+        .preview-company-section,
+        .preview-brand-section {
+            width: 100%;
+            text-align: center;
+        }
+
+        .preview-brand-section {
+            text-align: center;
+        }
+
+        .brand-preview-box {
+            text-align: center;
+        }
+
+        .brand-logo-img {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quotation-document {
+            padding: 15px;
+        }
+
+        .action-buttons .btn {
+            display: block;
+            width: 100%;
+            margin: 8px 0;
+        }
+
+        .company-name {
+            font-size: 20px;
+        }
+
+        .quotation-title {
+            font-size: 22px;
+        }
+
+        .items-section table {
+            font-size: 11px;
+        }
+
+        .items-section table th,
+        .items-section table td {
+            padding: 5px 3px;
+        }
+
+        .signature-line {
+            width: 100%;
+        }
+
+        .brand-preview-box {
+            margin-top: 10px;
+        }
+    }
+
+    /* Print page break handling */
+    @media print {
+        .quotation-document {
+            page-break-after: avoid;
+        }
+
+        .items-section {
+            page-break-inside: avoid;
+        }
+
+        .signature-section {
+            page-break-inside: avoid;
+        }
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .page-header {
+        display: none;
+    }
+
+    main {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    @page {
+        size: A4;
+        margin: 3mm;
+    }
+
+    .quotation-document {
+        width: 100%;
+        margin: 0;
+    }
+    @media print {
+
+    html, body{
+        height: auto !important;
+        overflow: hidden !important;
+    }
+
+    .quotation-preview-section{
+        margin:0 !important;
+        padding:0 !important;
+    }
+
+    .container{
+        max-width:100% !important;
+        width:100% !important;
+    }
+
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize tooltips if needed
+        if (typeof bootstrap !== 'undefined') {
+            try {
+                const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+                tooltips.forEach(tooltip => new bootstrap.Tooltip(tooltip));
+            } catch (e) {
+                console.log('Bootstrap tooltips not available');
+            }
+        }
+
+        // Print handler
+        window.beforePrint = function () {
+            console.log('Print dialog opening...');
+        };
+
+        window.afterPrint = function () {
+            console.log('Print dialog closed');
+        };
+
+        // Add print event listeners
+        if (window.matchMedia) {
+            const mediaQueryList = window.matchMedia('print');
+            mediaQueryList.addListener(function (mql) {
+                if (mql.matches) {
+                    beforePrint();
+                } else {
+                    afterPrint();
+                }
+            });
+        }
+
+        window.addEventListener('beforeprint', window.beforePrint);
+        window.addEventListener('afterprint', window.afterPrint);
+    });
+</script>
+{% endblock %}

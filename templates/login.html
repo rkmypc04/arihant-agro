@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %}लॉगिन - Arihant Agro Services{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header page-header-small">
+    <div class="page-header-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="page-title">लॉगिन</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url_for('home') }}">मुख्यपृष्ठ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">लॉगिन</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Login Section -->
+<section class="auth-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7">
+                <div class="auth-card">
+                    <div class="auth-header text-center">
+                        <div class="auth-icon">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h3 class="auth-title">तुमच्या खात्यात लॉगिन करा</h3>
+                        <p class="auth-subtitle">कोटेशन तयार करण्यासाठी लॉगिन आवश्यक</p>
+                    </div>
+                    
+                    <form method="POST" action="{{ url_for('login') }}" class="auth-form">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">
+                                <i class="fas fa-envelope me-2"></i>ईमेल
+                            </label>
+                            <input type="email" 
+                                   class="form-control form-control-lg" 
+                                   id="email" 
+                                   name="email" 
+                                   placeholder="तुमचा ईमेल टाका"
+                                   required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password" class="form-label">
+                                <i class="fas fa-lock me-2"></i>पासवर्ड
+                            </label>
+                            <div class="input-group">
+                                <input type="password" 
+                                       class="form-control form-control-lg" 
+                                       id="password" 
+                                       name="password" 
+                                       placeholder="तुमचा पासवर्ड टाका"
+                                       required>
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                            <label class="form-check-label" for="remember">मला लक्षात ठेवा</label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="fas fa-sign-in-alt me-2"></i>लॉगिन
+                        </button>
+                    </form>
+                    
+                    <div class="auth-divider">
+                        <span>किंवा</span>
+                    </div>
+                    
+                    <div class="auth-footer text-center">
+                        <p class="mb-2">
+                            खाते नाही? 
+                            <a href="{{ url_for('register') }}" class="auth-link">नोंदणी करा</a>
+                        </p>
+                        <p class="mb-0">
+                            <a href="#" class="auth-link text-muted" onclick="alert('कृपया admin@arihantagro.com वर संपर्क साधा')">
+                                <i class="fas fa-key me-1"></i>पासवर्ड विसरलात?
+                            </a>
+                        </p>
+                    </div>
+                    
+                    <div class="auth-help mt-4">
+                        <div class="alert alert-info">
+                            <h6><i class="fas fa-info-circle me-2"></i>मदत हवी आहे?</h6>
+                            <p class="mb-0 small">
+                                लॉगिनमध्ये समस्या येत असल्यास कृपया आम्हाला 
+                                <a href="tel:9604373737">9604373737</a> वर कॉल करा.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block extra_js %}
+<script>
+    // Toggle password visibility
+    document.getElementById('togglePassword').addEventListener('click', function() {
+        const passwordInput = document.getElementById('password');
+        const icon = this.querySelector('i');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+</script>
+{% endblock %}
+{% endblock %}

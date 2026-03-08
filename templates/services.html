@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+
+{% block title %}आमच्या सेवा - Arihant Agro Services{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="page-header-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="page-title">आमच्या सेवा</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url_for('home') }}">मुख्यपृष्ठ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">सेवा</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services-section py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-badge">What We Offer</span>
+            <h2 class="section-title">आमच्या सेवा</h2>
+            <p class="section-subtitle">शेतकऱ्यांसाठी विविध प्रकारच्या सेवा उपलब्ध</p>
+        </div>
+        
+        <div class="row">
+            <!-- Service 1 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h4 class="service-title">ड्रिप इरिगेशन सिस्टीम</h4>
+                    <p class="service-text">
+                        आधुनिक ड्रिप इरिगेशन सिस्टीमची विक्री आणि इन्स्टॉलेशन. 
+                        पाण्याची बचत आणि उत्पादन वाढीसाठी सर्वोत्तम उपाय.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i>सबसिडी करीता साहाय्य</li>
+                        <li><i class="fas fa-check"></i>सिस्टीम डिझाइन</li>
+                        <li><i class="fas fa-check"></i>इन्स्टॉलेशन</li>
+                        <li><i class="fas fa-check"></i>मेंटेनन्स</li>
+                        <li><i class="fas fa-check"></i>तांत्रिक सहाय्य</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-spray-can"></i>
+                    </div>
+                    <h4 class="service-title">स्प्रिंकलर सिस्टीम</h4>
+                    <p class="service-text">
+                        मोठ्या क्षेत्रासाठी अत्यंत प्रभावी स्प्रिंकलर सिस्टीम. 
+                       सोयाबीन, हरबरा, तूर, गहू, आणि इतर पिकांसाठी उपयुक्त.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i>सबसिडी करीता साहाय्य</li>
+                        <li><i class="fas fa-check"></i>सेंटर पिव्हट सिस्टीम</li>
+                        <li><i class="fas fa-check"></i>मिनी स्प्रिंकलर</li>
+                        <li><i class="fas fa-check"></i>रेन गन</li>
+                        <li><i class="fas fa-check"></i>फ्लॅट स्प्रिंकलर</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h4 class="service-title">PVC व HDPE पाईप्स</h4>
+                    <p class="service-text">
+                        विविध आकारमानात PVC व HDPE पाईप्स आणि फिटिंग्स. 
+                        पाईपलाईन करीता उच्च दाब सहन करण्यासाठी मजबूत आणि टिकाऊ.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i>सबसिडी करीता साहाय्य</li>
+                        <li><i class="fas fa-check"></i>विविध साईझ उपलब्ध</li>
+                        <li><i class="fas fa-check"></i>क्विक रिलीज कपलर</li>
+                        <li><i class="fas fa-check"></i>सर्व प्रकारचे फिटिंग्स</li>
+                        <li><i class="fas fa-check"></i>ISI प्रमाणित</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Service 4 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-faucet"></i>
+                    </div>
+                    <h4 class="service-title">प्लंबिंग मटेरियल्स</h4>
+                    <p class="service-text">
+                        घरगुती आणि शेतीसाठी प्लंबिंग मटेरियल्स. 
+                        CPVC, UPVC, GI पाईप्स आणि सर्व प्रकारचे फिटिंग्स.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i>CPVC पाईप्स</li>
+                        <li><i class="fas fa-check"></i>UPVC पाईप्स</li>
+                        <li><i class="fas fa-check"></i>SWR पाईप्स</li>
+                        <li><i class="fas fa-check"></i>टॅप्स आणि वाल्व्ह</li>
+                        <li><i class="fas fa-check"></i>वॉटर टॅंक</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Service 5 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bath"></i>
+                    </div>
+                    <h4 class="service-title">सॅनिटरी फिटिंग्स</h4>
+                    <p class="service-text">
+                        बाथरूम आणि शौचालयासाठी सॅनिटरी फिटिंग्स. 
+                        आधुनिक डिझाइनमध्ये उच्च दर्जाची उत्पादने.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i>वॉल मिक्सर</li>
+                        <li><i class="fas fa-check"></i>शॉवर पॅनल्स</li>
+                        <li><i class="fas fa-check"></i>सिंक व बीब कॉक</li>
+                        <li><i class="fas fa-check"></i>वॉश बेसिन</li>
+                        <li><i class="fas fa-check"></i>कमोड</li>
+                        
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Service 6 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <h4 class="service-title">कृषी मशिनरी</h4>
+                    <p class="service-text">
+                        शेतीसाठी आवश्यक विविध प्रकारची मशिनरी आणि साधने. 
+                        पंप, मोटार, स्प्रे पंप आणि इतर उपकरणे.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i>सबसिडी करीता साहाय्य</li>
+                        <li><i class="fas fa-check"></i>मोटार व बोअरवेल पंप</li>
+                        <li><i class="fas fa-check"></i>स्टार्टर</li>
+                        <li><i class="fas fa-check"></i>स्प्रे पंप</li>
+                        <li><i class="fas fa-check"></i>टोकन यंत्र</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section class="process-section py-5 bg-light">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-badge">How It Works</span>
+            <h2 class="section-title">आमची प्रक्रिया</h2>
+            <p class="section-subtitle">सेवा घेण्याची सोपी प्रक्रिया</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="process-card">
+                    <div class="process-number">01</div>
+                    <div class="process-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h4 class="process-title">संपर्क करा</h4>
+                    <p class="process-text">आम्हाला फोन किंवा व्हॉट्सअ‍ॅपवर संपर्क करा</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="process-card">
+                    <div class="process-number">02</div>
+                    <div class="process-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h4 class="process-title">आवश्यकता सांगा</h4>
+                    <p class="process-text">तुमच्या शेतीची आवश्यकता आम्हाला सांगा</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="process-card">
+                    <div class="process-number">03</div>
+                    <div class="process-icon">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <h4 class="process-title">कोटेशन मिळवा</h4>
+                    <p class="process-text">योग्य कोटेशन आणि योजना मिळवा</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="process-card">
+                    <div class="process-number">04</div>
+                    <div class="process-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h4 class="process-title">इन्स्टॉलेशन</h4>
+                    <p class="process-text">वेळेवर इन्स्टॉलेशन आणि सेवा</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5">
+    <div class="container">
+        <div class="cta-box">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="cta-title">सेवेसाठी संपर्क करा</h2>
+                    <p class="cta-text">
+                        तुमच्या शेतीसाठी योग्य सल्ला आणि सेवा मिळवण्यासाठी 
+                        आजच आमच्याशी संपर्क साधा.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="{{ url_for('contact') }}" class="btn btn-light btn-lg">
+                        <i class="fas fa-phone me-2"></i>संपर्क करा
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

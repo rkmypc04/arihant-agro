@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+
+{% block title %}उत्पादने - Arihant Agro Services{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="page-header-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="page-title">आमची उत्पादने</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url_for('home') }}">मुख्यपृष्ठ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">उत्पादने</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Section -->
+<section class="products-section py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-badge">Our Products</span>
+            <h2 class="section-title">कृषी उत्पादने</h2>
+            <p class="section-subtitle">उच्च दर्जाची ISI प्रमाणित उत्पादने</p>
+        </div>
+        
+        <!-- Product Categories -->
+        <div class="product-categories mb-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="category-tabs text-center">
+                        <button class="category-btn active" data-category="all">
+                            <i class="fas fa-th-large me-2"></i>सर्व
+                        </button>
+                        <button class="category-btn" data-category="drip">
+                            <i class="fas fa-tint me-2"></i>ड्रिप
+                        </button>
+                        <button class="category-btn" data-category="sprinkler">
+                            <i class="fas fa-spray-can me-2"></i>स्प्रिंकलर
+                        </button>
+                        <button class="category-btn" data-category="pipes">
+                            <i class="fas fa-network-wired me-2"></i>पाईप्स
+                        </button>
+                        <button class="category-btn" data-category="fittings">
+                            <i class="fas fa-tools me-2"></i>फिटिंग्स
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Products Grid -->
+        <div class="row">
+            {% for product in products %}
+            <div class="col-lg-4 col-md-6 mb-4 product-item" data-category="{{ 'pipes' if 'Pipe' in product.name or 'HDPE' in product.name else 'fittings' if 'Saddle' in product.name or 'TEE' in product.name or 'Bend' in product.name or 'Plug' in product.name or 'Nipple' in product.name else 'sprinkler' if 'Sprinkler' in product.name or 'Nozzle' in product.name else 'drip' if 'Drip' in product.name or 'Dripper' in product.name or 'Filter' in product.name or 'Venturi' in product.name else 'all' }}">
+                <div class="product-detail-card">
+                    <div class="product-badge">
+                        <span class="cml-badge">CML: {{ product.cml_no }}</span>
+                    </div>
+                    <div class="product-image-wrapper">
+                        <img src="{{ url_for('static', filename='images/product-' + loop.index|string + '.jpg') }}" 
+                             alt="{{ product.name }}" 
+                             class="img-fluid"
+                             onerror="this.src='{{ url_for('static', filename='images/product-placeholder.jpg') }}'">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">{{ product.name }}</h4>
+                        <div class="product-meta">
+                            <span class="product-unit"><i class="fas fa-ruler me-1"></i>{{ product.unit }}</span>
+                            <span class="product-rate"><i class="fas fa-tag me-1"></i>₹{{ "%.2f"|format(product.rate) }}</span>
+                        </div>
+                        <p class="product-description">
+                            {% if 'HDPE' in product.name %}
+                                उच्च घनत्वाचे पॉलिथिलीन पाईप्स जे उच्च दाब सहन करू शकतात.
+                            {% elif 'Sprinkler' in product.name %}
+                                धातूचे स्प्रिंकलर नोझल्स जे समान पाणी वाटप करतात.
+                            {% elif 'Drip' in product.name or 'Dripper' in product.name %}
+                                पाणी बचतीसाठी आधुनिक ड्रिप इरिगेशन सिस्टीम.
+                            {% elif 'Filter' in product.name %}
+                                किटकणे आणि घाण काढण्यासाठी उच्च दर्जाचे फिल्टर.
+                            {% elif 'Venturi' in product.name %}
+                                खत मिश्रणासाठी वेंचुरी इंजेक्टर.
+                            {% else %}
+                                उच्च दर्जाचे ISI प्रमाणित कृषी उत्पादन.
+                            {% endif %}
+                        </p>
+                        {% if session.user_id %}
+                        <a href="{{ url_for('new_quotation') }}" class="btn btn-primary btn-sm w-100">
+                            <i class="fas fa-plus me-2"></i>कोटेशनमध्ये जोडा
+                        </a>
+                        {% else %}
+                        <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-sm w-100">
+                            <i class="fas fa-sign-in-alt me-2"></i>लॉगिन करा
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Product Features Section -->
+<section class="product-features-section py-5 bg-light">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-badge">Why Choose Us</span>
+            <h2 class="section-title">उत्पादन वैशिष्ट्ये</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="feature-box">
+                    <div class="feature-icon-box">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h4>ISI प्रमाणित</h4>
+                    <p>सर्व उत्पादने ISI मानकांनुसार प्रमाणित</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="feature-box">
+                    <div class="feature-icon-box">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>टिकाऊ</h4>
+                    <p>दीर्घकाळ टिकणारी उच्च दर्जाची उत्पादने</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="feature-box">
+                    <div class="feature-icon-box">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h4>स्पर्धात्मक किंमत</h4>
+                    <p>बाजारातील सर्वोत्तम किंमती</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="feature-box">
+                    <div class="feature-icon-box">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4>तांत्रिक सहाय्य</h4>
+                    <p>इन्स्टॉलेशन आणि मेंटेनन्ससाठी सहाय्य</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Brands Section -->
+<section class="brands-section py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-badge">Authorized Brands</span>
+            <h2 class="section-title">उपलब्ध ब्रँड्स</h2>
+            <p class="section-subtitle">प्रसिद्ध कंपन्यांचे अधिकृत वितरक</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="brand-info-card">
+                    <div class="brand-logo">
+                        <img src="{{ url_for('static', filename='images/brand-jain.png') }}" alt="Jain Irrigation" class="img-fluid">
+                    </div>
+                    <h4>Jain Irrigation Systems Ltd</h4>
+                    <p>जगप्रसिद्ध ड्रिप इरिगेशन सिस्टीम उत्पादक</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="brand-info-card">
+                    <div class="brand-logo">
+                        <img src="{{ url_for('static', filename='images/brand-supreme.png') }}" alt="Supreme" class="img-fluid">
+                    </div>
+                    <h4>Supreme</h4>
+                    <p>उच्च दर्जाचे प्लास्टिक पाईप्स आणि फिटिंग्स</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="brand-info-card">
+                    <div class="brand-logo">
+                        <img src="{{ url_for('static', filename='images/brand-finolex.png') }}" alt="Finolex" class="img-fluid">
+                    </div>
+                    <h4>Finolex</h4>
+                    <p>विश्वसनीय प्लंबिंग आणि सॅनिटरी उत्पादने</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block extra_js %}
+<script>
+    // Product category filter
+    document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remove active class from all buttons
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            const category = this.dataset.category;
+            
+            // Filter products
+            document.querySelectorAll('.product-item').forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}

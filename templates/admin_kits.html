@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}किट व्यवस्थापन{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h3 class="mb-4">किट तयार करा</h3>
+
+    <form method="POST">
+        <!-- Brand -->
+        <div class="mb-3">
+            <label class="form-label">ब्रँड निवडा</label>
+            <select name="brand_id" class="form-control" required>
+                <option value="">-- ब्रँड निवडा --</option>
+                {% for brand in brands %}
+                <option value="{{ brand._id }}">{{ brand.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Kit Name -->
+        <div class="mb-3">
+            <label class="form-label">किट नाव</label>
+            <input type="text" name="kit_name" class="form-control" required>
+        </div>
+
+        <!-- Size -->
+        <div class="mb-4">
+            <label class="form-label">Size</label>
+            <input type="text" name="size" class="form-control">
+        </div>
+
+        <!-- Products Selection -->
+        <h5 class="mb-3">उत्पादने निवडा</h5>
+
+        {% for product in kits_products %}
+        <div class="row align-items-center mb-2 border p-2 rounded">
+            <div class="col-md-6">
+                <input type="checkbox" name="product_id" value="{{ product._id }}" class="form-check-input">
+                <strong>{{ product.name }}</strong>
+                <small class="text-muted">(₹{{ product.rate }})</small>
+            </div>
+
+            <div class="col-md-3">
+                <input type="number" min="1" name="qty_{{ product._id }}" class="form-control" placeholder="Qty">
+            </div>
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-warning mt-3">
+            ➕ किट तयार करा
+        </button>
+    </form>
+
+    <hr class="my-5">
+
+    <!-- Existing Kits -->
+    <h4>सर्व किट</h4>
+
+    {% if kits %}
+    <div class="list-group">
+        {% for kit in kits %}
+        <div class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <strong>{{ kit.kit_name }}</strong>
+                <small class="text-muted"> ({{ kit.size }})</small>
+            </div>
+            <a href="{{ url_for('delete_kit', kit_id=kit._id) }}" 
+               class="btn btn-danger btn-sm"
+               onclick="return confirm('हा kit delete करायचा आहे का?')">
+                <i class="fas fa-trash"></i> Delete
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-muted">अद्याप किट तयार नाही</p>
+    {% endif %}
+</div>
+{% endblock %}

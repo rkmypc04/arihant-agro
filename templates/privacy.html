@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block title %}गोपनीयता धोरण - Arihant Agro Services{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="page-header-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="page-title">गोपनीयता धोरण</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url_for('home') }}">मुख्यपृष्ठ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">गोपनीयता धोरण</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Privacy Content -->
+<section class="privacy-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="privacy-content">
+                    <div class="privacy-intro">
+                        <p>
+                            Arihant Agro Services मध्ये आम्ही तुमच्या गोपनीयतेचा आदर करतो. 
+                            हे गोपनीयता धोरण स्पष्ट करते की आम्ही तुमची वैयक्तिक माहिती 
+                            कशी गोळा करतो, वापरतो आणि संरक्षित करतो.
+                        </p>
+                    </div>
+                    
+                    <div class="privacy-item">
+                        <h3><i class="fas fa-database me-2"></i>1. माहिती गोळा करणे</h3>
+                        <p>आम्ही खालील प्रकारची माहिती गोळा करू शकतो:</p>
+                        <ul>
+                            <li><strong>वैयक्तिक माहिती:</strong> नाव, मोबाईल नंबर, ईमेल, पत्ता</li>
+                            <li><strong>व्यवसाय माहिती:</strong> दुकानाचे नाव, GSTIN</li>
+                            <li><strong>शेती संबंधित माहिती:</strong> गाव, शिवार, गट नंबर, क्षेत्रफळ</li>
+                            <li><strong>लॉगिन माहिती:</strong> वापरकर्तानाव आणि पासवर्ड</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="privacy-item">
+                        <h3><i class="fas fa-bullseye me-2"></i>2. माहिती वापरणे</h3>
+                        <p>आम्ही तुमची माहिती खालील उद्देशांसाठी वापरतो:</p>
+                        <ul>
+                            <li>कोटेशन तयार करणे आणि व्यवस्थापित करणे</li>
+                            <li>उत्पादनांची माहिती आणि अपडेट्स पाठवणे</li>
+                            <li>ग्राहक सेवा आणि तांत्रिक सहाय्य देणे</li>
+                            <li>व्यवसायाच्या उद्देशांसाठी विश्लेषण</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="privacy-item">
+                        <h3><i class="fas fa-lock me-2"></i>3. माहिती सुरक्षा</h3>
+                        <p>
+                            आम्ही तुमची माहिती सुरक्षित ठेवण्यासाठी योग्य तांत्रिक आणि 
+                            व्यवस्थापकीय उपाययोजना करतो. आमच्या वेबसाइटवर SSL प्रमाणपत्र 
+                            असून सर्व डेटा एन्कोडेड स्वरूपात संचयित केला जातो.
+                        </p>
+                    </div>
+                    
+                    <div class="privacy-item">
+                        <h3><i class="fas fa-share-alt me-2"></i>4. माहिती शेअरिंग</h3>
+                        <p>
+                            आम्ही तुमची वैयक्तिक माहिती तिसऱ्या पक्षांसोबत शेअर करत नाही, 
+                            फक्त खालील परिस्थितीमध्ये:
+                        </p>
+                        <ul>
+                            <li>कायदेशीर आवश्यकता असल्यास</li>
+                            <li>तुमच्या परवानगीने</li>
+                            <li>व्यवसायाच्या भागीदारांसोबत (फक्त आवश्यक माहिती)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="privacy-item">
+                        <h3><i class="fas fa-cookie-bite me-2"></i>5. कुकीज</h3>
+                        <p>
+                            आमच्या वेबसाइटवर कुकीज वापरल्या जातात ज्यामुळे तुमचा 
+                            अनुभव सुधारण्यास मदत होते. तुम्ही तुमच्या ब्राउझरमध्ये 
+                            कुकीज अक्षम करू शकता, परंतु यामुळे काही वैशिष्ट्ये 
+                            काम करणे बंद होऊ शकते.
+                        </p>
+                    </div>
+                    
+                    <div class="privacy-item">
+                        <h3><i class="fas fa-user-shield me-2"></i>6. तुमचे हक्क</h3>
+                        <p>तुम्हाला खालील हक्क आहेत:</p>
+                        <ul>
+                            <li>तुमची माहिती पाहण्याचा हक्क</li>
+                            <li>माहिती दुरुस्त करण्याचा हक्क</li>
+                            <li>माहिती हटवण्याचा हक्क</li>
+                            <li>माहिती वापरावर मर्यादा घालण्याचा हक्क</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="privacy-item">
+                        <h3><i class="fas fa-envelope me-2"></i>7. संपर्क</h3>
+                        <p>
+                            गोपनीयता धोरणाबद्दल कोणत्याही प्रश्नासाठी आम्हाला 
+                            खालील पत्त्यावर संपर्क करा:
+                        </p>
+                        <div class="contact-info-box">
+                            <p><strong>Arihant Agro Services</strong></p>
+                            <p><i class="fas fa-map-marker-alt me-2"></i>{{ company.address }}</p>
+                            <p><i class="fas fa-phone me-2"></i>{{ company.mobile }}</p>
+                            <p><i class="fas fa-envelope me-2"></i>{{ company.email }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="privacy-item">
+                        <h3><i class="fas fa-sync-alt me-2"></i>8. बदल</h3>
+                        <p>
+                            आम्ही वेळोवेळी हे गोपनीयता धोरण अद्यतनित करू शकतो. 
+                            कोणत्याही मोठ्या बदलाबद्दल आम्ही तुम्हाला सूचित करू. 
+                            वेबसाइटचा वापर सुरू ठेवल्यास नवीन धोरणास तुमची संमती 
+                            मानली जाईल.
+                        </p>
+                    </div>
+                    
+                    <div class="privacy-footer">
+                        <p class="text-muted">
+                            <i class="fas fa-calendar-alt me-2"></i>
+                            शेवटचे अद्यतन: 20 फेब्रुवारी 2024
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+
+{% block title %}आमच्याबद्दल - Arihant Agro Services{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="page-header-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="page-title">आमच्याबद्दल</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url_for('home') }}">मुख्यपृष्ठ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">आमच्याबद्दल</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Content -->
+<section class="about-section py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4">
+                <div class="about-image">
+                    <img src="{{ url_for('static', filename='images/about-us.jpg') }}" alt="About Arihant Agro" class="img-fluid rounded shadow">
+                    <div class="experience-badge">
+                        <span class="years">12+</span>
+                        <span class="text">वर्षे अनुभव</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="about-content">
+                    <span class="section-badge">About Us</span>
+                    <h2 class="section-title">Arihant Agro Services</h2>
+                    <p class="about-text">
+                        Arihant Agro Services ही कृषी क्षेत्रातील एक विश्वसनीय नाव आहे. 
+                        आम्ही शेतकऱ्यांना उच्च दर्जाच्या कृषी उत्पादनांचा पुरवठा करतो. 
+                        ड्रिप इरिगेशन, स्प्रिंकलर सिस्टीम, HDPE पाईप्स, प्लंबिंग मटेरियल्स, 
+                        मशिनरी, सॅनिटरी आणि बाथरूम फिटिंग्स यासारख्या विविध उत्पादनांची 
+                        आमच्याकडे विस्तृत श्रेणी उपलब्ध आहे.
+                    </p>
+                    <p class="about-text">
+                        आम्ही Jain Irrigation Systems Ltd, Supreme, Praytag, PSG, Sona, 
+                        Finolex या प्रसिद्ध ब्रँड्सचे अधिकृत वितरक आहोत. 
+                        आमचा उद्देश शेतकऱ्यांना आधुनिक तंत्रज्ञानाचा वापर करून 
+                        त्यांच्या शेतीचे उत्पादन वाढवण्यास मदत करणे हा आहे.
+                    </p>
+                    <div class="about-features">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>ISI प्रमाणित उत्पादने</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>स्पर्धात्मक किंमत</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>वेळेवर डिलिव्हरी</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <span>तांत्रिक सहाय्य</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission Vision Section -->
+<section class="mission-vision-section py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="mission-card">
+                    <div class="card-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="card-title">आमचे ध्येय</h3>
+                    <p class="card-text">
+                        शेतकऱ्यांना आधुनिक कृषी तंत्रज्ञानाची ओळख करून देऊन 
+                        त्यांच्या शेतीचे उत्पादन वाढवणे आणि पाण्याची बचत करणे. 
+                        प्रत्येक शेतकऱ्याला दर्जेदार उत्पादने आणि सेवा 
+                        योग्य किंमतीत उपलब्ध करून देणे.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="vision-card">
+                    <div class="card-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="card-title">आमचे दृष्टिकोन</h3>
+                    <p class="card-text">
+                        महाराष्ट्रातील सर्वात विश्वसनीय कृषी उत्पादन पुरवठादार बनणे. 
+                        शेतकऱ्यांच्या समृद्धीसाठी नवनवीन तंत्रज्ञानाचा अवलंब करून 
+                        त्यांना सर्वोत्तम सेवा देणे.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Owner Section -->
+<section class="owner-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="owner-card text-center">
+                    <div class="owner-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="owner-name">वैभव बेलोकर</h3>
+                    <p class="owner-title">मालक, Arihant Agro Services</p>
+                    <p class="owner-message">
+                        "मी गेल्या 12 वर्षांपासून कृषी क्षेत्रात कार्यरत आहे. 
+                        माझा उद्देश शेतकऱ्यांना दर्जेदार उत्पादने आणि 
+                        उत्तम सेवा देणे हा आहे. आमच्या सर्व ग्राहकांचे 
+                        मनापासून आभारी आहे."
+                    </p>
+                    <div class="owner-contact">
+                        <p><i class="fas fa-phone me-2"></i>{{ company.mobile }}</p>
+                        <p><i class="fas fa-envelope me-2"></i>{{ company.email }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Company Info Section -->
+<section class="company-info-section py-5 bg-light">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-badge">Company Details</span>
+            <h2 class="section-title">कंपनी माहिती</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="info-card">
+                    <h4 class="info-title"><i class="fas fa-building me-2"></i>कंपनी तपशील</h4>
+                    <table class="table table-borderless">
+                        <tr>
+                            <td><strong>कंपनीचे नाव:</strong></td>
+                            <td>{{ company.name }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>मालक:</strong></td>
+                            <td>{{ company.proprietor }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>पत्ता:</strong></td>
+                            <td>{{ company.address }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>मोबाईल:</strong></td>
+                            <td>{{ company.mobile }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ईमेल:</strong></td>
+                            <td>{{ company.email }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>GSTIN:</strong></td>
+                            <td>{{ company.gstin }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="info-card">
+                    <h4 class="info-title"><i class="fas fa-university me-2"></i>बँक तपशील</h4>
+                    <table class="table table-borderless">
+                        <tr>
+                            <td><strong>बँकेचे नाव:</strong></td>
+                            <td>{{ company.bank_name }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>शाखा:</strong></td>
+                            <td>{{ company.branch }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>खाते क्रमांक:</strong></td>
+                            <td>{{ company.account_no }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IFSC कोड:</strong></td>
+                            <td>{{ company.ifsc }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
